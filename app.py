@@ -54,33 +54,33 @@ def formatar_cnpj(valor):
     return str(valor or "")
 
 
-# ==========================================================
-# CONFIGURAÇÃO DO GITHUB
-# ==========================================================
-
 def github_config():
-
     token = st.secrets.get(
         "GITHUB_TOKEN",
         ""
-    ).strip()
+    )
 
     repo = st.secrets.get(
         "GITHUB_REPOSITORY",
         ""
-    ).strip()
+    )
 
     branch = st.secrets.get(
         "GITHUB_BRANCH",
         "main"
-    ).strip()
+    )
 
     data_dir = st.secrets.get(
         "GITHUB_DATA_DIR",
         "dados"
-    ).strip().strip("/")
+    )
 
-    return token, repo, branch, data_dir
+    return (
+        token,
+        repo,
+        branch,
+        data_dir
+    )
 
 
 def github_request(
@@ -89,7 +89,6 @@ def github_request(
     token,
     **kwargs
 ):
-
     headers = kwargs.pop(
         "headers",
         {}
@@ -110,110 +109,78 @@ def github_request(
     )
 
 
-# ==========================================================
-# VERIFICAÇÃO DO GITHUB
-# ==========================================================
-
-def verificar_github():
+def obter_sha_atual(
+    nome_arquivo
+):
+    """
+    Busca diretamente no GitHub o SHA mais atual
+    do arquivo antes de fazer uma alteração.
+    """
 
     token, repo, branch, data_dir = github_config()
 
-    if not token:
-        return False, (
-            "GITHUB_TOKEN não foi configurado "
-            "nos Secrets do Streamlit."
+    if not token or not repo:
+        return (
+            None,
+            False,
+            "Configure GITHUB_TOKEN e GITHUB_REPOSITORY nos Secrets."
         )
 
-    if not repo:
-        return False, (
-            "GITHUB_REPOSITORY não foi configurado "
-            "nos Secrets do Streamlit."
-        )
+    data_dir = data_dir.strip("/")
 
-    if "/" not in repo:
-        return False, (
-            "GITHUB_REPOSITORY está incorreto. "
-            "Use o formato usuario/repositorio."
+    if data_dir:
+        caminho = (
+            f"{data_dir}/{nome_arquivo}"
         )
+    else:
+        caminho = nome_arquivo
 
-    url = f"https://api.github.com/repos/{repo}"
+    url = (
+        f"https://api.github.com/repos/"
+        f"{repo}/contents/{caminho}"
+    )
 
     resposta = github_request(
         "GET",
         url,
-        token
+        token,
+        params={
+            "ref": branch
+        }
     )
 
     if resposta.status_code == 200:
         dados = resposta.json()
 
-        nome = dados.get(
-            "full_name",
-            repo
-        )
-
-        branch_padrao = dados.get(
-            "default_branch",
-            branch
-        )
-
-        return True, (
-            f"GitHub conectado corretamente ao "
-            f"repositório {nome}, branch {branch_padrao}."
-        )
-
-    if resposta.status_code == 401:
-        return False, (
-            "O GITHUB_TOKEN foi recusado pelo GitHub. "
-            "Verifique se o token está correto e possui "
-            "permissão para acessar o repositório."
-        )
-
-    if resposta.status_code == 403:
-        return False, (
-            "O GitHub recusou o acesso. "
-            "Verifique as permissões do GITHUB_TOKEN."
+        return (
+            dados.get("sha"),
+            True,
+            ""
         )
 
     if resposta.status_code == 404:
-        return False, (
-            f"O GitHub não encontrou o repositório "
-            f"'{repo}'. "
-            f"Verifique o GITHUB_REPOSITORY nos Secrets."
+        # Arquivo ainda não existe.
+        return (
+            None,
+            True,
+            ""
         )
 
-    return False, (
-        f"Erro ao verificar o GitHub "
-        f"({resposta.status_code}): "
-        f"{resposta.text[:500]}"
+    return (
+        None,
+        False,
+        (
+            f"Erro ao consultar o arquivo no GitHub "
+            f"({resposta.status_code}): "
+            f"{resposta.text[:500]}"
+        )
     )
 
-
-# ==========================================================
-# CAMINHO DOS ARQUIVOS
-# ==========================================================
-
-def caminho_arquivo_github(
-    nome_arquivo
-):
-
-    token, repo, branch, data_dir = github_config()
-
-    if data_dir:
-        return f"{data_dir}/{nome_arquivo}"
-
-    return nome_arquivo
-
-
-# ==========================================================
-# CARREGAR ARQUIVO DO GITHUB
-# ==========================================================
 
 def carregar_arquivo_github(
     nome_arquivo,
     padrao
 ):
-
     token, repo, branch, data_dir = github_config()
 
     if not token or not repo:
@@ -221,13 +188,17 @@ def carregar_arquivo_github(
             padrao,
             None,
             False,
-            "Configure GITHUB_TOKEN e GITHUB_REPOSITORY "
-            "nos Secrets do Streamlit."
+            "Configure GITHUB_TOKEN e GITHUB_REPOSITORY nos Secrets."
         )
 
-    caminho = caminho_arquivo_github(
-        nome_arquivo
-    )
+    data_dir = data_dir.strip("/")
+
+    if data_dir:
+        caminho = (
+            f"{data_dir}/{nome_arquivo}"
+        )
+    else:
+        caminho = nome_arquivo
 
     url = (
         f"https://api.github.com/repos/"
@@ -266,14 +237,14 @@ def carregar_arquivo_github(
                 padrao,
                 None,
                 False,
-                f"Não foi possível ler "
-                f"{caminho}: {erro}"
+                (
+                    f"Não foi possível ler "
+                    f"{caminho}: {erro}"
+                )
             )
 
     if resposta.status_code == 404:
 
-        # Arquivo ainda não existe.
-        # Isso é normal na primeira utilização.
         return (
             padrao,
             None,
@@ -281,38 +252,17 @@ def carregar_arquivo_github(
             ""
         )
 
-    if resposta.status_code == 401:
-
-        return (
-            padrao,
-            None,
-            False,
-            "O GITHUB_TOKEN foi recusado pelo GitHub."
-        )
-
-    if resposta.status_code == 403:
-
-        return (
-            padrao,
-            None,
-            False,
-            "O GitHub recusou o acesso. "
-            "Verifique as permissões do token."
-        )
-
     return (
         padrao,
         None,
         False,
-        f"Erro ao acessar o GitHub "
-        f"({resposta.status_code}): "
-        f"{resposta.text[:500]}"
+        (
+            f"Erro ao acessar o GitHub "
+            f"({resposta.status_code}): "
+            f"{resposta.text[:500]}"
+        )
     )
 
-
-# ==========================================================
-# SALVAR ARQUIVO NO GITHUB
-# ==========================================================
 
 def salvar_arquivo_github(
     nome_arquivo,
@@ -320,29 +270,52 @@ def salvar_arquivo_github(
     sha=None,
     mensagem="Atualização dos dados"
 ):
+    """
+    Salva o arquivo no GitHub.
+
+    IMPORTANTE:
+    Antes de salvar, busca o SHA mais recente diretamente
+    no GitHub. Isso evita problemas quando o SHA armazenado
+    pelo aplicativo está desatualizado.
+    """
 
     token, repo, branch, data_dir = github_config()
 
-    if not token:
+    if not token or not repo:
         return (
             False,
-            "GITHUB_TOKEN não está configurado."
+            "Configure GITHUB_TOKEN e GITHUB_REPOSITORY nos Secrets."
         )
 
-    if not repo:
-        return (
-            False,
-            "GITHUB_REPOSITORY não está configurado."
-        )
+    data_dir = data_dir.strip("/")
 
-    caminho = caminho_arquivo_github(
-        nome_arquivo
-    )
+    if data_dir:
+        caminho = (
+            f"{data_dir}/{nome_arquivo}"
+        )
+    else:
+        caminho = nome_arquivo
 
     url = (
         f"https://api.github.com/repos/"
         f"{repo}/contents/{caminho}"
     )
+
+    # ---------------------------------------------------------
+    # CORREÇÃO PRINCIPAL:
+    # buscar o SHA atual diretamente no GitHub
+    # ---------------------------------------------------------
+
+    sha_atual, consulta_ok, erro_consulta = obter_sha_atual(
+        nome_arquivo
+    )
+
+    if not consulta_ok:
+
+        return (
+            False,
+            erro_consulta
+        )
 
     conteudo = json.dumps(
         dados,
@@ -350,19 +323,17 @@ def salvar_arquivo_github(
         indent=2
     )
 
-    conteudo_base64 = base64.b64encode(
-        conteudo.encode("utf-8")
-    ).decode("utf-8")
-
     payload = {
         "message": mensagem,
-        "content": conteudo_base64,
+        "content": base64.b64encode(
+            conteudo.encode("utf-8")
+        ).decode("utf-8"),
         "branch": branch
     }
 
-    # Se o arquivo já existe, o SHA é obrigatório.
-    if sha:
-        payload["sha"] = sha
+    # Se o arquivo já existe, usa o SHA mais recente.
+    if sha_atual:
+        payload["sha"] = sha_atual
 
     resposta = github_request(
         "PUT",
@@ -371,50 +342,77 @@ def salvar_arquivo_github(
         json=payload
     )
 
-    if resposta.status_code in (200, 201):
-        return True, ""
-
-    if resposta.status_code == 401:
+    if resposta.status_code in (
+        200,
+        201
+    ):
         return (
-            False,
-            "O GitHub recusou o GITHUB_TOKEN."
+            True,
+            ""
         )
 
-    if resposta.status_code == 403:
-        return (
-            False,
-            "O GitHub recusou a gravação. "
-            "Verifique as permissões do GITHUB_TOKEN."
+    # ---------------------------------------------------------
+    # Segunda tentativa:
+    # caso o arquivo tenha sido alterado exatamente durante
+    # o salvamento, busca novamente o SHA e tenta outra vez.
+    # ---------------------------------------------------------
+
+    if resposta.status_code in (
+        409,
+        422
+    ):
+
+        novo_sha, nova_consulta_ok, novo_erro = obter_sha_atual(
+            nome_arquivo
         )
 
-    if resposta.status_code == 404:
-        return (
-            False,
-            "O GitHub não encontrou o repositório "
-            f"'{repo}' ou o token não possui acesso "
-            "a ele. Verifique GITHUB_REPOSITORY e "
-            "as permissões do token."
-        )
+        if nova_consulta_ok:
 
-    if resposta.status_code == 409:
+            if novo_sha:
+                payload["sha"] = novo_sha
+
+            elif "sha" in payload:
+                del payload["sha"]
+
+            segunda_resposta = github_request(
+                "PUT",
+                url,
+                token,
+                json=payload
+            )
+
+            if segunda_resposta.status_code in (
+                200,
+                201
+            ):
+                return (
+                    True,
+                    ""
+                )
+
+            return (
+                False,
+                (
+                    f"Erro ao salvar no GitHub "
+                    f"({segunda_resposta.status_code}): "
+                    f"{segunda_resposta.text[:500]}"
+                )
+            )
+
         return (
             False,
-            "O arquivo foi alterado no GitHub por "
-            "outra ação. Atualize o aplicativo e tente "
-            "novamente."
+            novo_erro
         )
 
     return (
         False,
-        f"Erro ao salvar no GitHub "
-        f"({resposta.status_code}): "
-        f"{resposta.text[:500]}"
+        (
+            f"Erro ao salvar no GitHub "
+            f"({resposta.status_code}): "
+            f"{resposta.text[:500]}"
+        )
     )
 
-
-# ==========================================================
-# CARREGAMENTO DOS DADOS
-# ==========================================================
 
 def carregar_dados():
 
@@ -476,10 +474,6 @@ def carregar_dados():
     )
 
 
-# ==========================================================
-# CRIAR ARQUIVOS INICIAIS
-# ==========================================================
-
 def garantir_dados_no_github(
     transportadores,
     historico,
@@ -522,18 +516,15 @@ def garantir_dados_no_github(
         )
 
 
-# ==========================================================
-# HISTÓRICO
-# ==========================================================
-
 def snapshot_transportador(
     transportador,
     acao
 ):
-
     return {
         "data": agora_iso(),
+
         "acao": acao,
+
         "transportador": json.loads(
             json.dumps(
                 transportador,
@@ -543,14 +534,9 @@ def snapshot_transportador(
     }
 
 
-# ==========================================================
-# ENDEREÇO
-# ==========================================================
-
 def montar_endereco(
     transportador
 ):
-
     partes = []
 
     logradouro = transportador.get(
@@ -588,10 +574,14 @@ def montar_endereco(
         endereco = logradouro
 
         if numero:
-            endereco += f", Nº {numero}"
+            endereco += (
+                f", Nº {numero}"
+            )
 
         if complemento:
-            endereco += f", {complemento}"
+            endereco += (
+                f", {complemento}"
+            )
 
         partes.append(endereco)
 
@@ -599,7 +589,8 @@ def montar_endereco(
         partes.append(bairro)
 
     cidade_uf = " - ".join(
-        x for x in [
+        x
+        for x in [
             municipio,
             uf
         ]
@@ -607,19 +598,16 @@ def montar_endereco(
     )
 
     if cidade_uf:
-        partes.append(cidade_uf)
+        partes.append(
+            cidade_uf
+        )
 
     return ", ".join(partes)
 
 
-# ==========================================================
-# CONTATO
-# ==========================================================
-
 def montar_contato(
     transportador
 ):
-
     partes = []
 
     telefone = transportador.get(
@@ -645,14 +633,9 @@ def montar_contato(
     return " ".join(partes)
 
 
-# ==========================================================
-# BLOCO DO TRANSPORTADOR
-# ==========================================================
-
 def gerar_bloco_transportador(
     transportador
 ):
-
     linhas = []
 
     nome = transportador.get(
@@ -721,7 +704,8 @@ def gerar_bloco_transportador(
     if validade_credenciamento:
 
         linhas.append(
-            f"VALIDADE: {validade_credenciamento}"
+            f"VALIDADE: "
+            f"{validade_credenciamento}"
         )
 
     descricao_licenca = (
@@ -746,15 +730,12 @@ def gerar_bloco_transportador(
     if validade_licenca:
 
         linhas.append(
-            f"VALIDADE: {validade_licenca}"
+            f"VALIDADE: "
+            f"{validade_licenca}"
         )
 
     return "\n".join(linhas)
 
-
-# ==========================================================
-# GERAR RELATÓRIO
-# ==========================================================
 
 def gerar_relatorio(
     transportadores,
@@ -842,11 +823,9 @@ def gerar_relatorio(
     return "\n".join(linhas)
 
 
-# ==========================================================
-# CRIAR WORD
-# ==========================================================
-
-def criar_docx(texto):
+def criar_docx(
+    texto
+):
 
     from docx import Document
     from docx.shared import Pt
@@ -875,7 +854,10 @@ def criar_docx(texto):
                 WD_ALIGN_PARAGRAPH.CENTER
             )
 
-            run = paragrafo.add_run(linha)
+            run = paragrafo.add_run(
+                linha
+            )
+
             run.bold = True
             run.font.size = Pt(14)
 
@@ -887,7 +869,10 @@ def criar_docx(texto):
                 WD_ALIGN_PARAGRAPH.CENTER
             )
 
-            run = paragrafo.add_run(linha)
+            run = paragrafo.add_run(
+                linha
+            )
+
             run.bold = True
             run.font.size = Pt(11)
 
@@ -897,27 +882,31 @@ def criar_docx(texto):
 
             paragrafo.paragraph_format.space_before = Pt(12)
 
-            run = paragrafo.add_run(linha)
+            run = paragrafo.add_run(
+                linha
+            )
+
             run.bold = True
             run.font.size = Pt(11)
 
         elif linha.strip():
 
-            run = paragrafo.add_run(linha)
+            run = paragrafo.add_run(
+                linha
+            )
+
             run.font.size = Pt(10)
 
     arquivo = BytesIO()
 
-    documento.save(arquivo)
+    documento.save(
+        arquivo
+    )
 
     arquivo.seek(0)
 
     return arquivo
 
-
-# ==========================================================
-# COPIAR RELATÓRIO
-# ==========================================================
 
 def copiar_texto_componente(
     texto,
@@ -969,38 +958,59 @@ def copiar_texto_componente(
         const texto = {texto_js};
 
         document
-            .getElementById("btn_{identificador}")
-            .addEventListener("click", async function() {{
+            .getElementById(
+                "btn_{identificador}"
+            )
+            .addEventListener(
+                "click",
+                async function() {{
 
-                try {{
+                    try {{
 
-                    await navigator.clipboard.writeText(texto);
+                        await navigator
+                            .clipboard
+                            .writeText(texto);
 
-                    document.getElementById(
-                        "msg_{identificador}"
-                    ).innerText = "Relatório copiado!";
+                        document
+                            .getElementById(
+                                "msg_{identificador}"
+                            )
+                            .innerText =
+                            "Relatório copiado!";
 
-                }} catch (erro) {{
+                    }} catch (erro) {{
 
-                    const area = document.createElement("textarea");
+                        const area =
+                            document.createElement(
+                                "textarea"
+                            );
 
-                    area.value = texto;
+                        area.value = texto;
 
-                    document.body.appendChild(area);
+                        document.body.appendChild(
+                            area
+                        );
 
-                    area.select();
+                        area.select();
 
-                    document.execCommand("copy");
+                        document.execCommand(
+                            "copy"
+                        );
 
-                    document.body.removeChild(area);
+                        document.body.removeChild(
+                            area
+                        );
 
-                    document.getElementById(
-                        "msg_{identificador}"
-                    ).innerText = "Relatório copiado!";
+                        document
+                            .getElementById(
+                                "msg_{identificador}"
+                            )
+                            .innerText =
+                            "Relatório copiado!";
+                    }}
 
                 }}
-
-            }});
+            );
 
     </script>
     """
@@ -1010,10 +1020,6 @@ def copiar_texto_componente(
         height=55
     )
 
-
-# ==========================================================
-# VALIDAR TRANSPORTADOR
-# ==========================================================
 
 def validar_transportador(
     transportador,
@@ -1107,8 +1113,8 @@ def validar_transportador(
         if cnpj_existente == cnpj:
 
             erros.append(
-                "Já existe um transportador "
-                "cadastrado com este CNPJ."
+                "Já existe um transportador cadastrado "
+                "com este CNPJ."
             )
 
             break
@@ -1125,10 +1131,6 @@ def validar_transportador(
 
     return erros
 
-
-# ==========================================================
-# CARREGAR FORMULÁRIO
-# ==========================================================
 
 def carregar_formulario(
     transportador
@@ -1254,10 +1256,6 @@ def carregar_formulario(
     )
 
 
-# ==========================================================
-# LIMPAR FORMULÁRIO
-# ==========================================================
-
 def limpar_formulario():
 
     chaves = [
@@ -1293,10 +1291,6 @@ def limpar_formulario():
         "editando_id"
     ] = None
 
-
-# ==========================================================
-# TELA DE FORMULÁRIO
-# ==========================================================
 
 def tela_formulario(
     transportadores,
@@ -1604,9 +1598,7 @@ def tela_formulario(
             )
         )
 
-        coluna_salvar, coluna_cancelar = (
-            st.columns(2)
-        )
+        coluna_salvar, coluna_cancelar = st.columns(2)
 
         with coluna_salvar:
 
@@ -1649,21 +1641,37 @@ def tela_formulario(
                 cnpj
             ),
 
-            "logradouro": logradouro.strip(),
+            "logradouro": (
+                logradouro.strip()
+            ),
 
-            "numero": numero.strip(),
+            "numero": (
+                numero.strip()
+            ),
 
-            "complemento": complemento.strip(),
+            "complemento": (
+                complemento.strip()
+            ),
 
-            "bairro": bairro.strip(),
+            "bairro": (
+                bairro.strip()
+            ),
 
-            "municipio": municipio.strip(),
+            "municipio": (
+                municipio.strip()
+            ),
 
-            "uf": uf.strip().upper(),
+            "uf": (
+                uf.strip().upper()
+            ),
 
-            "telefone": telefone.strip(),
+            "telefone": (
+                telefone.strip()
+            ),
 
-            "email": email.strip(),
+            "email": (
+                email.strip()
+            ),
 
             "tipo_credenciamento": (
                 tipo_credenciamento
@@ -1715,9 +1723,7 @@ def tela_formulario(
         erros = validar_transportador(
             novo,
             transportadores,
-            existente.get(
-                "id"
-            )
+            existente.get("id")
             if existente
             else None
         )
@@ -1725,7 +1731,6 @@ def tela_formulario(
         if erros:
 
             for erro in erros:
-
                 st.error(erro)
 
         else:
@@ -1740,15 +1745,10 @@ def tela_formulario(
                 )
 
                 transportadores[:] = [
-
                     novo
-                    if x.get(
-                        "id"
-                    ) == existente.get(
-                        "id"
-                    )
+                    if x.get("id")
+                    == existente.get("id")
                     else x
-
                     for x in transportadores
                 ]
 
@@ -1768,26 +1768,35 @@ def tela_formulario(
                     f"{novo['nome']}"
                 )
 
-            ok1, erro1 = (
-                salvar_arquivo_github(
-                    "transportadores.json",
-                    transportadores,
-                    sha_t,
-                    mensagem
-                )
+            # -------------------------------------------------
+            # SALVA O CADASTRO
+            # O método de salvamento agora busca o SHA atual.
+            # -------------------------------------------------
+
+            ok1, erro1 = salvar_arquivo_github(
+                "transportadores.json",
+                transportadores,
+                sha_t,
+                mensagem
             )
 
             if not ok1:
 
-                st.error(erro1)
+                st.error(
+                    erro1
+                )
 
             else:
 
-                ok2, erro2 = (
-                    salvar_arquivo_github(
-                        "historico.json",
-                        historico,
-                        sha_h,
+                # ---------------------------------------------
+                # SALVA O HISTÓRICO
+                # ---------------------------------------------
+
+                ok2, erro2 = salvar_arquivo_github(
+                    "historico.json",
+                    historico,
+                    sha_h,
+                    (
                         f"Registrar histórico - "
                         f"{novo['nome']}"
                     )
@@ -1813,10 +1822,6 @@ def tela_formulario(
 
                 st.rerun()
 
-
-# ==========================================================
-# TELA DE TRANSPORTADORES
-# ==========================================================
 
 def tela_transportadores(
     transportadores,
@@ -1862,7 +1867,10 @@ def tela_transportadores(
             f"{normalizar_cnpj(transportador.get('cnpj', ''))}"
         ).lower()
 
-        if not termo or termo in texto:
+        if (
+            not termo
+            or termo in texto
+        ):
 
             filtrados.append(
                 transportador
@@ -1903,10 +1911,8 @@ def tela_transportadores(
             border=True
         ):
 
-            coluna_info, coluna_acoes = (
-                st.columns(
-                    [5, 2]
-                )
+            coluna_info, coluna_acoes = st.columns(
+                [5, 2]
             )
 
             with coluna_info:
@@ -1943,10 +1949,7 @@ def tela_transportadores(
 
                 if st.button(
                     "Editar",
-                    key=(
-                        f"editar_"
-                        f"{transportador['id']}"
-                    ),
+                    key=f"editar_{transportador['id']}",
                     use_container_width=True
                 ):
 
@@ -1967,10 +1970,7 @@ def tela_transportadores(
 
                     if st.button(
                         "Desativar",
-                        key=(
-                            f"desativar_"
-                            f"{transportador['id']}"
-                        ),
+                        key=f"desativar_{transportador['id']}",
                         use_container_width=True
                     ):
 
@@ -2040,10 +2040,7 @@ def tela_transportadores(
 
                     if st.button(
                         "Reativar",
-                        key=(
-                            f"reativar_"
-                            f"{transportador['id']}"
-                        ),
+                        key=f"reativar_{transportador['id']}",
                         use_container_width=True
                     ):
 
@@ -2110,10 +2107,6 @@ def tela_transportadores(
                             )
 
 
-# ==========================================================
-# TELA DE RELATÓRIO
-# ==========================================================
-
 def tela_relatorio(
     transportadores,
     relatorios,
@@ -2168,9 +2161,16 @@ def tela_relatorio(
         )
 
         registro = {
-            "id": str(uuid.uuid4()),
+            "id": str(
+                uuid.uuid4()
+            ),
+
             "gerado_em": agora_iso(),
-            "data_atualizacao": data_formatada,
+
+            "data_atualizacao": (
+                data_formatada
+            ),
+
             "texto": texto
         }
 
@@ -2202,8 +2202,7 @@ def tela_relatorio(
             ] = registro
 
             st.success(
-                "Relatório gerado e salvo "
-                "no histórico."
+                "Relatório gerado e salvo no histórico."
             )
 
         else:
@@ -2275,10 +2274,6 @@ def tela_relatorio(
             )
 
 
-# ==========================================================
-# RELATÓRIOS ANTERIORES
-# ==========================================================
-
 def tela_relatorios_anteriores(
     relatorios
 ):
@@ -2299,19 +2294,25 @@ def tela_relatorios_anteriores(
         relatorios
     ):
 
-        data_atualizacao = relatorio.get(
-            "data_atualizacao",
-            ""
+        data_atualizacao = (
+            relatorio.get(
+                "data_atualizacao",
+                ""
+            )
         )
 
-        gerado_em = relatorio.get(
-            "gerado_em",
-            ""
+        gerado_em = (
+            relatorio.get(
+                "gerado_em",
+                ""
+            )
         )
 
         titulo = (
-            f"Relatório de {data_atualizacao}"
-            f" — gerado em {gerado_em}"
+            f"Relatório de "
+            f"{data_atualizacao}"
+            f" — gerado em "
+            f"{gerado_em}"
         )
 
         with st.expander(
@@ -2384,10 +2385,6 @@ def tela_relatorios_anteriores(
                 )
 
 
-# ==========================================================
-# TELA INICIAL
-# ==========================================================
-
 def tela_inicio(
     transportadores,
     relatorios
@@ -2398,8 +2395,7 @@ def tela_inicio(
     )
 
     st.caption(
-        "Cadastro, gerenciamento e geração "
-        "da relação por modalidade."
+        "Cadastro, gerenciamento e geração da relação por modalidade."
     )
 
     ativos = sum(
@@ -2468,17 +2464,12 @@ def tela_inicio(
     st.divider()
 
     st.info(
-        "Os cadastros são mantidos por CNPJ, "
-        "permitindo associar várias modalidades "
-        "à mesma empresa. Os relatórios já gerados "
-        "permanecem preservados mesmo após "
-        "futuras edições."
+        "Os cadastros são mantidos por CNPJ, permitindo "
+        "associar várias modalidades à mesma empresa. "
+        "Os relatórios já gerados permanecem preservados "
+        "mesmo após futuras edições."
     )
 
-
-# ==========================================================
-# FUNÇÃO PRINCIPAL
-# ==========================================================
 
 def main():
 
@@ -2493,36 +2484,8 @@ def main():
         )
 
         st.write(
-            "Adicione nos Secrets do Streamlit:"
-        )
-
-        st.code(
-            'GITHUB_TOKEN = "seu_token"\n'
-            'GITHUB_REPOSITORY = '
-            '"ellenm0/Trabalho-Produ-o-Avan-ada"'
-        )
-
-        st.stop()
-
-    # Verifica o acesso ao repositório
-    github_ok, github_mensagem = (
-        verificar_github()
-    )
-
-    if not github_ok:
-
-        st.error(
-            "Não foi possível acessar o "
-            "repositório do GitHub."
-        )
-
-        st.warning(
-            github_mensagem
-        )
-
-        st.info(
-            "Verifique os Secrets do Streamlit "
-            "e as permissões do GITHUB_TOKEN."
+            "Adicione nos Secrets do Streamlit: "
+            "GITHUB_TOKEN e GITHUB_REPOSITORY."
         )
 
         st.stop()
