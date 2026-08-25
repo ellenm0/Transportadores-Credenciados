@@ -402,5 +402,29 @@
     "ativo": true,
     "criado_em": "2026-08-25T17:31:51",
     "atualizado_em": "2026-08-25T17:31:51"
+  },
+  {
+    "id": "9714ec54-65d3-4ff0-abfa-a5e9d0cb28e8",
+    "nome": "EQUILOC COMERCIAL E SERVICOS LTDA (EQMIX)",
+    "cnpj": "15208296000108",
+    "logradouro": "RUA SUL",
+    "numero": "280",
+    "complemento": "(LOT CAJAZEIRAS I)",
+    "bairro": "CAJAZEIRAS",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3289-4240",
+    "email": "adm@eqmix.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P357002/2024",
+    "validade_credenciamento": "11/10/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD030/2023 (S2023055539)",
+    "validade_licenca": "17/09/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T17:52:25",
+    "atualizado_em": "2026-08-25T17:52:25"
   }
 ]
