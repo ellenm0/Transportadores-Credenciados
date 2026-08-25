@@ -134,5 +134,34 @@
     "ativo": true,
     "criado_em": "2026-08-25T14:06:26",
     "atualizado_em": "2026-08-25T14:06:26"
+  },
+  {
+    "id": "fe6f017b-b033-4bb0-8e83-ebc78803b884",
+    "nome": "LIMPTUDO SERVIÇOS DE LIMPEZA E CONSERVAÇÃO LTDA",
+    "cnpj": "03825354000163",
+    "logradouro": "Rua Antonio Sá e Silva",
+    "numero": "1404",
+    "complemento": "",
+    "bairro": "Tamantaduba",
+    "municipio": "Eusebio",
+    "uf": "CE",
+    "telefone": "(85) 3260-9140",
+    "email": "adm@limptudo.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P199638/2024",
+    "validade_credenciamento": "06/06/2029",
+    "descricao_licenca": "Licença de Operação nº 021/2021 (Processo nº S2020012216)",
+    "validade_licenca": "22/03/2026",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)",
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T14:09:56",
+    "atualizado_em": "2026-08-25T14:09:56"
   }
 ]
