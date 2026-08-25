@@ -281,7 +281,7 @@
   },
   {
     "id": "7aa4d65c-9c87-4628-8dc6-4523fcaa32d6",
-    "nome": "J E SERVICOS DE COLETA E TRANSPORTES DE LIXO URBANO LTDA",
+    "nome": "J E SERVICOS DE COLETA E TRANSPORTES DE LIXO URBANO LTDA (NEW LIMP)",
     "cnpj": "12798554000246",
     "logradouro": "AVENIDA QUARTO ANEL VIARIO",
     "numero": "2935",
@@ -304,6 +304,6 @@
     ],
     "ativo": true,
     "criado_em": "2026-08-25T16:47:11",
-    "atualizado_em": "2026-08-25T16:47:11"
+    "atualizado_em": "2026-08-25T16:50:30"
   }
 ]
