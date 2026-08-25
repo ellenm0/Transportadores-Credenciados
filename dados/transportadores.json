@@ -190,5 +190,35 @@
     "ativo": true,
     "criado_em": "2026-08-25T14:12:43",
     "atualizado_em": "2026-08-25T14:12:43"
+  },
+  {
+    "id": "ddc1656f-cefd-4e32-b8e9-bea7a97a86b3",
+    "nome": "SO ENTULHO TRANSPORTE DE CARGAS LTDA",
+    "cnpj": "10508023000165",
+    "logradouro": "RUA PEDRO CAMELO",
+    "numero": "139",
+    "complemento": "",
+    "bairro": "JANGURUSSU",
+    "municipio": "Fortaleza",
+    "uf": "CE",
+    "telefone": "(85) 3278-5822",
+    "email": "qsms@soentulho.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P492495/2025",
+    "validade_credenciamento": "Em renovação",
+    "descricao_licenca": "LICENÇA AMBIENTAL PARA ATIVIDADES (REGULARIZAÇÃO) - LAR_PD144/2021",
+    "validade_licenca": "26/11/2026",
+    "modalidades": [
+      "COLETA DE EFLUENTES",
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T14:21:09",
+    "atualizado_em": "2026-08-25T14:21:09"
   }
 ]
