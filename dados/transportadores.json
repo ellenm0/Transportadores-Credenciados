@@ -451,5 +451,29 @@
     "ativo": true,
     "criado_em": "2026-08-25T18:08:43",
     "atualizado_em": "2026-08-25T18:08:43"
+  },
+  {
+    "id": "14229297-3c09-4f44-9a30-a307ec3be42b",
+    "nome": "6M TRIAGEM E TRANSBORDO LTDA",
+    "cnpj": "32321018000181",
+    "logradouro": "R COCHRANE SANTIAGO",
+    "numero": "40",
+    "complemento": "",
+    "bairro": "PASSARE",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 98771-7663",
+    "email": "contato@usina6m.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "TR6660388/2024",
+    "validade_credenciamento": "17/06/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD008/2022 (S2020005015)",
+    "validade_licenca": "26/01/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T18:15:57",
+    "atualizado_em": "2026-08-25T18:15:57"
   }
 ]
