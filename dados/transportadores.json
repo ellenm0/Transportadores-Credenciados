@@ -48,5 +48,33 @@
     "ativo": true,
     "criado_em": "2026-08-25T13:57:14",
     "atualizado_em": "2026-08-25T13:57:14"
+  },
+  {
+    "id": "34452287-a470-4dfc-937e-cfe68cd88571",
+    "nome": "ECO+ SERVIÇOS AMBIENTAIS e IMOBILIÁRIA LTDA",
+    "cnpj": "63469811000156",
+    "logradouro": "Rua Manuel Juca",
+    "numero": "75",
+    "complemento": "",
+    "bairro": "Coaçu",
+    "municipio": "Eusébio",
+    "uf": "CE",
+    "telefone": "(85)3275-6090",
+    "email": "ecomais@ecomaisbr.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P481946/2024",
+    "validade_credenciamento": "30/04/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 285/2026",
+    "validade_licenca": "05/05/2029",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)",
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T14:00:11",
+    "atualizado_em": "2026-08-25T14:00:11"
   }
 ]
