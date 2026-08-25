@@ -76,5 +76,33 @@
     "ativo": true,
     "criado_em": "2026-08-25T14:00:11",
     "atualizado_em": "2026-08-25T14:00:11"
+  },
+  {
+    "id": "b21719c0-1b26-484c-88da-f0ea93b6eb42",
+    "nome": "NANDO RECICLAGEM LTDA",
+    "cnpj": "47442166000121",
+    "logradouro": "Rua Luis Henrique Albuquerque",
+    "numero": "801",
+    "complemento": "",
+    "bairro": "Parque da Tijuca",
+    "municipio": "Maracanaú",
+    "uf": "CE",
+    "telefone": "(85) 8902-5273",
+    "email": "inarafac@hotmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR6958478/2024",
+    "validade_credenciamento": "10/02/2030",
+    "descricao_licenca": "Licença de Operação Nº 2025000210",
+    "validade_licenca": "02/07/2028",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE EFLUENTES",
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T14:03:54",
+    "atualizado_em": "2026-08-25T14:03:54"
   }
 ]
