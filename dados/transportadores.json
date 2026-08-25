@@ -353,5 +353,29 @@
     "ativo": true,
     "criado_em": "2026-08-25T17:08:20",
     "atualizado_em": "2026-08-25T17:08:20"
+  },
+  {
+    "id": "c1ad2233-8c92-4fef-a712-7a725998bbb5",
+    "nome": "LUBRASIL LUBRIFICANTES LTDA",
+    "cnpj": "49396591001633",
+    "logradouro": "Avenida Coronel Antônio Ferreira",
+    "numero": "4200",
+    "complemento": "",
+    "bairro": "Gererau",
+    "municipio": "Itaitinga",
+    "uf": "CE",
+    "telefone": "(19) 3415-9955",
+    "email": "",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P371073/2025",
+    "validade_credenciamento": "13/05/2030",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO Nº 367/2023 - DICOP",
+    "validade_licenca": "20/12/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS PERIGOSOS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T17:24:42",
+    "atualizado_em": "2026-08-25T17:24:42"
   }
 ]
