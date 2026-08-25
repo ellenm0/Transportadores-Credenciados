@@ -475,5 +475,29 @@
     "ativo": true,
     "criado_em": "2026-08-25T18:15:57",
     "atualizado_em": "2026-08-25T18:15:57"
+  },
+  {
+    "id": "68b3e1d5-28fe-4d5a-8b2f-1d156a07811e",
+    "nome": "AD BRITA COMERCIO DE MATERIAIS DE CONSTRUCAO E SERVICOS LTDA",
+    "cnpj": "17479511000130",
+    "logradouro": "AV MONUMENTAL",
+    "numero": "200",
+    "complemento": "B",
+    "bairro": "PADRE JULIO MARIA",
+    "municipio": "CAUCAIA",
+    "uf": "CE",
+    "telefone": "(85) 3342-2697",
+    "email": "financeiro@adbrita.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P393454/2024",
+    "validade_credenciamento": "08/11/2028",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 259/2025 - SUPAD",
+    "validade_licenca": "23/05/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T18:54:38",
+    "atualizado_em": "2026-08-25T18:54:38"
   }
 ]
