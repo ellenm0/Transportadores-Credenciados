@@ -22,5 +22,31 @@
     "ativo": true,
     "criado_em": "2026-08-25T13:17:40",
     "atualizado_em": "2026-08-25T13:47:34"
+  },
+  {
+    "id": "4732ca67-8672-436c-94db-280e880312d2",
+    "nome": "AMBIPAR ENVIRONMENTAL NORDESTE LTDA",
+    "cnpj": "24312884000188",
+    "logradouro": "Rod Empresario Joao Santos Filho",
+    "numero": "2619",
+    "complemento": "",
+    "bairro": "Muribeca",
+    "municipio": "Jaboatão dos Guararapes",
+    "uf": "PE",
+    "telefone": "(81)3102-8857",
+    "email": "",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR6079215/2024",
+    "validade_credenciamento": "08/04/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 58/2025 - SUPAD",
+    "validade_licenca": "12/02/2028",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T13:57:14",
+    "atualizado_em": "2026-08-25T13:57:14"
   }
 ]
