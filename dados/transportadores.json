@@ -499,5 +499,29 @@
     "ativo": true,
     "criado_em": "2026-08-25T18:54:38",
     "atualizado_em": "2026-08-25T18:54:38"
+  },
+  {
+    "id": "7cd12b4b-6075-4e88-a15d-da778b55e6ea",
+    "nome": "CARLOS EUGENIO ESCAVACOES E TRANSPORTES LTDA",
+    "cnpj": "03160285000116",
+    "logradouro": "RUA N",
+    "numero": "680",
+    "complemento": "LOTEAMENTO ESPLANADA CASTELAO",
+    "bairro": "CASTELÃO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3289-1389",
+    "email": "ce.escavacoesetransportes@hotmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P294370/2024",
+    "validade_credenciamento": "27/09/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD123/2020 (S2020007825)",
+    "validade_licenca": "05/10/2025",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T19:00:12",
+    "atualizado_em": "2026-08-25T19:00:12"
   }
 ]
