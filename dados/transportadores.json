@@ -426,5 +426,30 @@
     "ativo": true,
     "criado_em": "2026-08-25T17:52:25",
     "atualizado_em": "2026-08-25T17:52:25"
+  },
+  {
+    "id": "058fac86-6f88-4537-b541-4bc9aeee66c5",
+    "nome": "F & A TRANSPORTE E SERVICOS LTDA (TELE ENTULHO)",
+    "cnpj": "05386318000176",
+    "logradouro": "R ESCRIVAO AZEVEDO",
+    "numero": "91",
+    "complemento": "",
+    "bairro": "CIDADE DOS FUNCIONARIOS",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3463-9419",
+    "email": "teleentulho07@hotmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR7261002/2024",
+    "validade_credenciamento": "25/02/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL PARA ATIVIDADES - LAR_PD060/2023 (S2023055433)",
+    "validade_licenca": "18/05/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T18:08:43",
+    "atualizado_em": "2026-08-25T18:08:43"
   }
 ]
