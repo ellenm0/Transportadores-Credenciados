@@ -104,5 +104,35 @@
     "ativo": true,
     "criado_em": "2026-08-25T14:03:54",
     "atualizado_em": "2026-08-25T14:03:54"
+  },
+  {
+    "id": "c642b0ba-e339-4130-b9bc-26738a44f242",
+    "nome": "TRANSÁGUA TRANSPORTES DE ÁGUA LTDA (ENGENIUM)",
+    "cnpj": "06631006000143",
+    "logradouro": "Rua Sousa Pinto",
+    "numero": "139",
+    "complemento": "",
+    "bairro": "Aerolândia",
+    "municipio": "Fortaleza",
+    "uf": "CE",
+    "telefone": "(85)3272-4301",
+    "email": "transagua@transagua.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR1285866/2024",
+    "validade_credenciamento": "04/06/2029",
+    "descricao_licenca": "LO_PD037/2024 (Processo nº S2024073907)",
+    "validade_licenca": "18/07/2029",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)",
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T14:06:26",
+    "atualizado_em": "2026-08-25T14:06:26"
   }
 ]
