@@ -1,26 +1,26 @@
 [
   {
     "id": "271d6465-4bd6-4cf8-83ad-e689b3eb0c40",
-    "nome": "aaaa",
-    "cnpj": "00000000222200",
-    "logradouro": "rua a",
-    "numero": "54",
-    "complemento": "complemento",
-    "bairro": "bairro",
-    "municipio": "municipio",
+    "nome": "COOPERCAM - CE",
+    "cnpj": "22952464000130",
+    "logradouro": "AVENIDA OLIVEIRA PAIVA",
+    "numero": "2541",
+    "complemento": "SL. 05",
+    "bairro": "CIDADE DOS FUNCIONARIOS",
+    "municipio": "FORTALEZA",
     "uf": "CE",
-    "telefone": "165464651",
-    "email": "email",
+    "telefone": "(85) 3086-8576",
+    "email": "coopercam.ce@gmail.com",
     "tipo_credenciamento": "Processo de Credenciamento",
-    "numero_credenciamento": "p35135",
-    "validade_credenciamento": "22/22/2222",
-    "descricao_licenca": "licenciamento",
-    "validade_licenca": "55/55/5555",
+    "numero_credenciamento": "P210291/2024",
+    "validade_credenciamento": "08/01/2029",
+    "descricao_licenca": "Licença de Operação (Renovação): LO_PD083/2021",
+    "validade_licenca": "05/08/2026",
     "modalidades": [
-      "COLETA DE EFLUENTES"
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
     ],
     "ativo": true,
     "criado_em": "2026-08-25T13:17:40",
-    "atualizado_em": "2026-08-25T13:32:59"
+    "atualizado_em": "2026-08-25T13:47:34"
   }
 ]
