@@ -329,5 +329,29 @@
     "ativo": true,
     "criado_em": "2026-08-25T16:59:04",
     "atualizado_em": "2026-08-25T16:59:04"
+  },
+  {
+    "id": "3aba0234-d52f-4700-bca0-372d144af197",
+    "nome": "DIVINA AMBIENTAL LTDA",
+    "cnpj": "52216510000102",
+    "logradouro": "Rua Dom Orione",
+    "numero": "800",
+    "complemento": "Quadra 97",
+    "bairro": "Tabapua Brasilia II",
+    "municipio": "CAUCAIA",
+    "uf": "CE",
+    "telefone": "(85) 8125-1874",
+    "email": "divinaambiental@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P056506/2025",
+    "validade_credenciamento": "25/04/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 3026/2024 - SUPAD",
+    "validade_licenca": "12/04/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS PERIGOSOS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T17:08:20",
+    "atualizado_em": "2026-08-25T17:08:20"
   }
 ]
