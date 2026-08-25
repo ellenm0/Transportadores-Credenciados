@@ -220,5 +220,35 @@
     "ativo": true,
     "criado_em": "2026-08-25T14:21:09",
     "atualizado_em": "2026-08-25T14:21:09"
+  },
+  {
+    "id": "eb2b704d-8dcf-4e38-bc77-5ef045dda385",
+    "nome": "BRASLIMP TRANSPORTES ESPECIALIZADOS LTDA",
+    "cnpj": "12216990000189",
+    "logradouro": "ROD QUARTO ANEL VIARIO",
+    "numero": "2346",
+    "complemento": "",
+    "bairro": "PEDRAS",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3267-9090",
+    "email": "braslimp@braslimp.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P236346/2025",
+    "validade_credenciamento": "04/11/2029",
+    "descricao_licenca": "Licença de Operação: LO_PD036/2024 (Processo nº S2023066839)",
+    "validade_licenca": "26/03/2029",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)",
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE EFLUENTES",
+      "COLETA DE RESÍDUOS PERIGOSOS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T16:30:24",
+    "atualizado_em": "2026-08-25T16:30:24"
   }
 ]
