@@ -163,5 +163,32 @@
     "ativo": true,
     "criado_em": "2026-08-25T14:09:56",
     "atualizado_em": "2026-08-25T14:09:56"
+  },
+  {
+    "id": "0426c722-501a-4c99-98ce-7b81599a2a23",
+    "nome": "NOVA TERRA LOCAÇÃO E SERVIÇOS LTDA",
+    "cnpj": "26760957000120",
+    "logradouro": "ROD. BR-116 KM 21",
+    "numero": "2100",
+    "complemento": "",
+    "bairro": "Jabuti",
+    "municipio": "Eusébio",
+    "uf": "CE",
+    "telefone": "(85) 3267-3344",
+    "email": "joao@novaterraalmbiental.srv.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR7617663/2024",
+    "validade_credenciamento": "02/05/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 26/2024 – SUPAD",
+    "validade_licenca": "25/01/2027",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T14:12:43",
+    "atualizado_em": "2026-08-25T14:12:43"
   }
 ]
