@@ -377,5 +377,30 @@
     "ativo": true,
     "criado_em": "2026-08-25T17:24:42",
     "atualizado_em": "2026-08-25T17:24:42"
+  },
+  {
+    "id": "2cb55d1a-34ac-4390-897a-fa9d062a270d",
+    "nome": "BRITACET COMERCIO E TRANSPORTE LTDA",
+    "cnpj": "06562219000160",
+    "logradouro": "Rua Pedro Adriano",
+    "numero": "SN",
+    "complemento": "",
+    "bairro": "Olho d’ Água",
+    "municipio": "Maracanaú",
+    "uf": "CE",
+    "telefone": "(85) 3258-5555",
+    "email": "abnerveras@hotmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR0385211/2024",
+    "validade_credenciamento": "11/02/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 371/2023 - SUPAD",
+    "validade_licenca": "13/09/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA",
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-25T17:31:51",
+    "atualizado_em": "2026-08-25T17:31:51"
   }
 ]
