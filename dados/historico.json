@@ -87,5 +87,33 @@
       "criado_em": "2026-08-25T16:47:11",
       "atualizado_em": "2026-08-25T16:47:11"
     }
+  },
+  {
+    "data": "2026-08-27T13:57:10",
+    "acao": "ANTES DA EDIÇÃO",
+    "transportador": {
+      "id": "a87ea8a8-82a0-4f37-8444-353b3b219f97",
+      "nome": "06.959.311/0001-69",
+      "cnpj": "06959311000169",
+      "logradouro": "Fazenda Jojoba",
+      "numero": "S/N",
+      "complemento": "",
+      "bairro": "ALTO FECHADO",
+      "municipio": "PACATUBA",
+      "uf": "CE",
+      "telefone": "(85) 8879-7918",
+      "email": "TOPCARHEBERT@GMAIL.COM",
+      "tipo_credenciamento": "Número de Credenciamento",
+      "numero_credenciamento": "TR7013888/2024",
+      "validade_credenciamento": "26/11/2029",
+      "descricao_licenca": "Licença de Operação Nº013/2024",
+      "validade_licenca": "19/12/2028",
+      "modalidades": [
+        "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA"
+      ],
+      "ativo": true,
+      "criado_em": "2026-08-27T13:53:21",
+      "atualizado_em": "2026-08-27T13:53:21"
+    }
   }
 ]
