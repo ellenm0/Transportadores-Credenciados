@@ -571,5 +571,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T11:54:40",
     "atualizado_em": "2026-08-27T11:54:40"
+  },
+  {
+    "id": "ecbfb669-62be-4b03-838c-6ace27394a40",
+    "nome": "LM SERVICOS DE ESCAVACAO DE AREIA LTDA",
+    "cnpj": "35072784000148",
+    "logradouro": "RUA HERMINIO BARROSO",
+    "numero": "4230",
+    "complemento": "",
+    "bairro": "SãO JOãO DO TAUAPE",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 99981-4341",
+    "email": "LM_ESCAVACOES@HOTMAIL.COM",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P111568/2024",
+    "validade_credenciamento": "16/09/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD027/2024 (S2024073852)",
+    "validade_licenca": "11/03/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T12:19:06",
+    "atualizado_em": "2026-08-27T12:19:06"
   }
 ]
