@@ -1395,5 +1395,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T19:56:42",
     "atualizado_em": "2026-08-27T19:56:42"
+  },
+  {
+    "id": "9cdf412c-5332-431b-b9d7-f007038f964f",
+    "nome": "DESENTUPIDORA E LIMPA FOSSAS SUGAR LTDA",
+    "cnpj": "05736036000151",
+    "logradouro": "RUA CATUMBY",
+    "numero": "31",
+    "complemento": "",
+    "bairro": "PARQUE POTIRA (JUREMA)",
+    "municipio": "CAUCAIA",
+    "uf": "CE",
+    "telefone": "(85) 3281-2190",
+    "email": "desentupidorasugar@yahoo.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR3685371/2025",
+    "validade_credenciamento": "20/08/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 209/2023 - DICOP",
+    "validade_licenca": "EM RENOVAÇÃO",
+    "modalidades": [
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T20:02:28",
+    "atualizado_em": "2026-08-27T20:02:28"
   }
 ]
