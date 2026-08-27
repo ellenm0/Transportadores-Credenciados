@@ -813,5 +813,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T14:18:53",
     "atualizado_em": "2026-08-27T14:18:53"
+  },
+  {
+    "id": "0ff1ecfd-cb89-406f-a1f1-923f6b8c473b",
+    "nome": "A+ AMBIENTAL PRESTACAO DE SERVICOS LTDA",
+    "cnpj": "02597261000166",
+    "logradouro": "AVENIDA SANTA CECILIA",
+    "numero": "3850",
+    "complemento": "",
+    "bairro": "GUARIBAS",
+    "municipio": "EUSEBIO",
+    "uf": "CE",
+    "telefone": "(85) 8662-2122",
+    "email": "contato@amaisambiental.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P092227/2024",
+    "validade_credenciamento": "02/06/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO Nº 041.2025/AMMA",
+    "validade_licenca": "24/04/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS PERIGOSOS",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T14:35:56",
+    "atualizado_em": "2026-08-27T14:35:56"
   }
 ]
