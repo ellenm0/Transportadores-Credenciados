@@ -547,5 +547,29 @@
     "ativo": true,
     "criado_em": "2026-08-26T19:55:48",
     "atualizado_em": "2026-08-26T19:55:48"
+  },
+  {
+    "id": "3885fd13-1783-47ed-a70e-4c5e8e399a1e",
+    "nome": "GIDALTO TRANSPORTES E ESCAVACOES LTDA",
+    "cnpj": "05587684000193",
+    "logradouro": "RUA CAPITAO HUGO BEZERRA",
+    "numero": "230",
+    "complemento": "",
+    "bairro": "BARROSO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 2291-635",
+    "email": "admgidalto@gmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR3416030/2024",
+    "validade_credenciamento": "11/11/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD047/2025 (S2024075877)",
+    "validade_licenca": "07/08/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T11:54:40",
+    "atualizado_em": "2026-08-27T11:54:40"
   }
 ]
