@@ -691,5 +691,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T13:24:49",
     "atualizado_em": "2026-08-27T13:24:49"
+  },
+  {
+    "id": "ecd7f9c4-c403-4093-9235-c10f29ec1c6d",
+    "nome": "ABVN TRANSPORTES LTDA",
+    "cnpj": "36287267000159",
+    "logradouro": "RUA PEDRO ADRIANO",
+    "numero": "601",
+    "complemento": "",
+    "bairro": "SANTO ANTONIO",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 9619-2391",
+    "email": "britacetentulhos@gmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR7730194/2024",
+    "validade_credenciamento": "17/07/2028",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 449/2023 - SUPAD",
+    "validade_licenca": "22/11/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T13:36:37",
+    "atualizado_em": "2026-08-27T13:36:37"
   }
 ]
