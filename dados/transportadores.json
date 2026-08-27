@@ -934,5 +934,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T16:33:54",
     "atualizado_em": "2026-08-27T16:33:54"
+  },
+  {
+    "id": "69554ad0-bcff-4f0f-b3ca-92db0fe97734",
+    "nome": "PACEL – PAPEL CARTÃO E EMBALAGENS LTDA",
+    "cnpj": "01397485000161",
+    "logradouro": "AV. PARQUE CENTRAL",
+    "numero": "1313",
+    "complemento": "",
+    "bairro": "DISTRITO INDUSTRIAL I",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 4009-4977",
+    "email": "sgi@cobap.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P133393/2024",
+    "validade_credenciamento": "16/02/2028",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 3463/2023 - SUPAD",
+    "validade_licenca": "16/02/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T16:41:14",
+    "atualizado_em": "2026-08-27T16:41:14"
   }
 ]
