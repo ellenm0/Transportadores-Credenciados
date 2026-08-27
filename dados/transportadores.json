@@ -1200,5 +1200,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T18:30:44",
     "atualizado_em": "2026-08-27T18:30:44"
+  },
+  {
+    "id": "06316cd2-38ea-4bfb-adf0-e284604b8af3",
+    "nome": "ESPHERA SOLUCOES AMBIENTAIS LTDA",
+    "cnpj": "31495730000134",
+    "logradouro": "RUA OESTE-1",
+    "numero": "357",
+    "complemento": "",
+    "bairro": "DISTRITO INDUSTRIAL I",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 8207-9992",
+    "email": "oi@esphera.eco",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR3342849/2025",
+    "validade_credenciamento": "13/11/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO Nº 2025000206",
+    "validade_licenca": "25/06/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T18:35:10",
+    "atualizado_em": "2026-08-27T18:35:10"
   }
 ]
