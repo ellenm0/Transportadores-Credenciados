@@ -1104,5 +1104,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T17:48:23",
     "atualizado_em": "2026-08-27T17:48:23"
+  },
+  {
+    "id": "5834c426-ceb9-469c-ae0d-2ef342eb8860",
+    "nome": "LAPEZI COMERCIO DE METAIS LTDA EM RECUPERACAO JUDICIAL",
+    "cnpj": "34153447000112",
+    "logradouro": "Rod. Edson Queiroz",
+    "numero": "2089",
+    "complemento": "",
+    "bairro": "CARAPIO",
+    "municipio": "ITAITINGA",
+    "uf": "CE",
+    "telefone": "(85) 3377-3010",
+    "email": "aline@pradconsultoria.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P088455/2025",
+    "validade_credenciamento": "23/04/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 2428/2024 - DICOP",
+    "validade_licenca": "15/03/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T17:55:51",
+    "atualizado_em": "2026-08-27T17:55:51"
   }
 ]
