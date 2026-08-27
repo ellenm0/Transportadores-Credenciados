@@ -983,5 +983,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T16:55:30",
     "atualizado_em": "2026-08-27T16:55:30"
+  },
+  {
+    "id": "23689e16-6660-41ba-affa-553520901d3d",
+    "nome": "J E TOMAZ FILHO LTDA",
+    "cnpj": "33599338000160",
+    "logradouro": "R ERNESTO GURGEL DO AMARAL",
+    "numero": "S/N",
+    "complemento": "",
+    "bairro": "JACANAU",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 9922-9339",
+    "email": "estevamtomaz@gmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR5330963/2024",
+    "validade_credenciamento": "16/03/2030",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD055/2022 (S2022042967)",
+    "validade_licenca": "09/11/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T17:26:51",
+    "atualizado_em": "2026-08-27T17:26:51"
   }
 ]
