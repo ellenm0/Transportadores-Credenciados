@@ -1152,5 +1152,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T18:11:17",
     "atualizado_em": "2026-08-27T18:11:17"
+  },
+  {
+    "id": "e226022a-9e06-467a-9fa7-f068ddf523f5",
+    "nome": "J.A. ALVES DE CARVALHO (SAL)",
+    "cnpj": "46656014000169",
+    "logradouro": "AVENIDA DO IMPERADOR",
+    "numero": "1473",
+    "complemento": "",
+    "bairro": "BENFICA",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 9916-0365",
+    "email": "laudecyferreira@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P381026/2025",
+    "validade_credenciamento": "10/10/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD047/2022 (S2022041589)",
+    "validade_licenca": "26/09/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T18:29:35",
+    "atualizado_em": "2026-08-27T18:29:35"
   }
 ]
