@@ -1224,5 +1224,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T18:35:10",
     "atualizado_em": "2026-08-27T18:35:10"
+  },
+  {
+    "id": "b9512a5d-1c45-45b4-bbd6-d36c2ce2687b",
+    "nome": "M P R DA SILVA (NORDESTE ÓLEO)",
+    "cnpj": "34155118000100",
+    "logradouro": "RUA LIMA CAMPOS",
+    "numero": "1331",
+    "complemento": "",
+    "bairro": "ALTO ALEGRE II",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 9232-3574",
+    "email": "NORDESTEOLEO@GMAIL.COM",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR9290007/2025",
+    "validade_credenciamento": "14/11/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 19322/2023 - SUPAD",
+    "validade_licenca": "16/11/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T18:39:56",
+    "atualizado_em": "2026-08-27T18:39:56"
   }
 ]
