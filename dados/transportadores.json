@@ -958,5 +958,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T16:41:14",
     "atualizado_em": "2026-08-27T16:41:14"
+  },
+  {
+    "id": "83635e8a-882f-4d6b-85d7-c9be9772fa26",
+    "nome": "COLIM COLETAS E TRANSPORTES LTDA",
+    "cnpj": "07242397000177",
+    "logradouro": "RUA MONSENHOR SABINO FEIJÃO",
+    "numero": "971",
+    "complemento": "",
+    "bairro": "BOM JARDIM",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 9628-2382",
+    "email": "",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P246071/2024",
+    "validade_credenciamento": "19/08/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD051/2024 (S2024070281)",
+    "validade_licenca": "05/05/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T16:55:30",
+    "atualizado_em": "2026-08-27T16:55:30"
   }
 ]
