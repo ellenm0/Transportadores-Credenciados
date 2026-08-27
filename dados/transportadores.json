@@ -1345,5 +1345,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T19:44:44",
     "atualizado_em": "2026-08-27T19:44:44"
+  },
+  {
+    "id": "f59ae80c-f972-46a9-ab35-f2046b176ed1",
+    "nome": "ATR SOLUCOES EM RESIDUOS LTDA",
+    "cnpj": "11201870000145",
+    "logradouro": "R ARQUITETO HERMENEGILDO DI LASCIO",
+    "numero": "91",
+    "complemento": "",
+    "bairro": "TAMBAUZINHO",
+    "municipio": "JOÃO PESSOA",
+    "uf": "PB",
+    "telefone": "(83) 3512-3797",
+    "email": "matheuslellis@atrsresiduos.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR3978471/2025",
+    "validade_credenciamento": "16/03/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 7365/2025 - SUPAD",
+    "validade_licenca": "18/11/2028",
+    "modalidades": [
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+      "COLETA DE RESÍDUOS PERIGOSOS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T19:50:56",
+    "atualizado_em": "2026-08-27T19:50:56"
   }
 ]
