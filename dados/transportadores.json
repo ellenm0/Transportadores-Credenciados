@@ -1056,5 +1056,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T17:38:26",
     "atualizado_em": "2026-08-27T17:38:26"
+  },
+  {
+    "id": "b5d30dfb-735e-4511-95db-8879d4a4442c",
+    "nome": "YBY SERVICOS DE ASSESSORIA NA AREA AMBIENTAL LTDA",
+    "cnpj": "24946050000124",
+    "logradouro": "RUA PROFESSOR CARLOS LOBO",
+    "numero": "100",
+    "complemento": "SALA 39",
+    "bairro": "PARQUE MANIBURA",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 8727-3633",
+    "email": "andre.marques@somosyby.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P442457/2024",
+    "validade_credenciamento": "07/03/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL PARA ATIVIDADES - LAR_PD176/2023 (S2023066101)",
+    "validade_licenca": "31/10/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T17:43:29",
+    "atualizado_em": "2026-08-27T17:43:29"
   }
 ]
