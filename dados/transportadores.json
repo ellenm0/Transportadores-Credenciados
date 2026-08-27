@@ -788,5 +788,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T14:12:06",
     "atualizado_em": "2026-08-27T14:12:06"
+  },
+  {
+    "id": "5eeab84c-9cf2-4856-b3d0-b2f62c23488a",
+    "nome": "MARQUISE SERVICOS AMBIENTAIS S/A",
+    "cnpj": "21635363000254",
+    "logradouro": "ESTRADA DO ITAPERI",
+    "numero": "725",
+    "complemento": "",
+    "bairro": "PASSARE",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 4008-3351",
+    "email": "FISCAL@MARQUISE.COM.BR",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P029968/2026",
+    "validade_credenciamento": "29/04/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 375/2023 - DICOP",
+    "validade_licenca": "14/09/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T14:18:53",
+    "atualizado_em": "2026-08-27T14:18:53"
   }
 ]
