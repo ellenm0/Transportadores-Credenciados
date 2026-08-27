@@ -862,5 +862,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T14:44:42",
     "atualizado_em": "2026-08-27T14:44:42"
+  },
+  {
+    "id": "8e2d70f7-9323-4949-8add-4b2b1f10dcf4",
+    "nome": "MAIS COLETA PRESTACAO DE SERVICOS LTDA",
+    "cnpj": "24527499000158",
+    "logradouro": "RUA PROFESSOR COSTA MENDES",
+    "numero": "2090",
+    "complemento": "ALTOS",
+    "bairro": "RODOLFO TEOFILO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 8800-7492",
+    "email": "maiscoletace@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P501374/2024",
+    "validade_credenciamento": "07/03/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD006/2022 (S2021027055)",
+    "validade_licenca": "21/12/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T16:30:03",
+    "atualizado_em": "2026-08-27T16:30:03"
   }
 ]
