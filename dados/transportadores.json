@@ -1297,5 +1297,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T19:09:42",
     "atualizado_em": "2026-08-27T19:09:42"
+  },
+  {
+    "id": "a7e4f78f-9ec2-4a55-88a1-b843c655f12c",
+    "nome": "F J DA CONCEICAO MENEZES ME",
+    "cnpj": "11008923000106",
+    "logradouro": "AVENIDA EDUARDO GIRÃO",
+    "numero": "301",
+    "complemento": "",
+    "bairro": "JARDIM AMÉRICA",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 98736-1899",
+    "email": "fjconceicao1@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P484743/2025",
+    "validade_credenciamento": "17/06/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL PARA ATIVIDADES - LAR_PD145/2025 (S2024081293)",
+    "validade_licenca": "27/08/2030",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T19:19:56",
+    "atualizado_em": "2026-08-27T19:19:56"
   }
 ]
