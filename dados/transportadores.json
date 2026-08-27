@@ -1370,5 +1370,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T19:50:56",
     "atualizado_em": "2026-08-27T19:50:56"
+  },
+  {
+    "id": "b86879c7-56a7-4041-b5b6-0ed0fdbe3070",
+    "nome": "MAR - MARACANAU RECICLAGEM DE SUBPRODUTOS LTDA",
+    "cnpj": "26644488000183",
+    "logradouro": "AV SENADOR VIRGÍLIO TÁVORA",
+    "numero": "1775",
+    "complemento": "",
+    "bairro": "DISTRITO INDUSTRIAL I",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 9647-9855",
+    "email": "diegodaniel_medeiros@yahoo.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR0556814/2026",
+    "validade_credenciamento": "23/06/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 2488/2024 - SUPAD",
+    "validade_licenca": "23/03/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T19:56:42",
+    "atualizado_em": "2026-08-27T19:56:42"
   }
 ]
