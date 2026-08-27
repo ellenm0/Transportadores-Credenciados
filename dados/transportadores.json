@@ -1273,5 +1273,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T18:57:25",
     "atualizado_em": "2026-08-27T18:57:25"
+  },
+  {
+    "id": "1e41da9e-2093-46f3-b939-46f052206af7",
+    "nome": "SISAM - SISTEMAS AMBIENTAIS LTDA",
+    "cnpj": "03344236000133",
+    "logradouro": "AVENIDA DOM ALMEIDA LUSTOSA",
+    "numero": "142",
+    "complemento": "",
+    "bairro": "PARQUE ALBANO (JUREMA)",
+    "municipio": "CAUCAIA",
+    "uf": "CE",
+    "telefone": "(85) 3229-0032",
+    "email": "meioambiente@sisamsistemasambientais.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P331518/2025",
+    "validade_credenciamento": "13/02/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 187/2024 - DICOP",
+    "validade_licenca": "27/06/2027",
+    "modalidades": [
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T19:09:42",
+    "atualizado_em": "2026-08-27T19:09:42"
   }
 ]
