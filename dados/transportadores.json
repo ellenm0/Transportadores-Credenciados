@@ -595,5 +595,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T12:19:06",
     "atualizado_em": "2026-08-27T12:19:06"
+  },
+  {
+    "id": "e84f68a4-2c0e-4fbb-a632-1ac7334b34bc",
+    "nome": "SAXUM DEMOLICOES PAVIMENTACOES E ESCAVACOES LTDA",
+    "cnpj": "10687766000140",
+    "logradouro": "RUA LUCIOLA",
+    "numero": "250",
+    "complemento": "",
+    "bairro": "PAUPINA",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3276-1185",
+    "email": "CONTATO.SAXUM@HOTMAIL.COM",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P046949/2026",
+    "validade_credenciamento": "11/03/2030",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD049/2024 (S2024072274)",
+    "validade_licenca": "25/05/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T12:25:37",
+    "atualizado_em": "2026-08-27T12:25:37"
   }
 ]
