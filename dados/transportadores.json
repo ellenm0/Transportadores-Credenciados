@@ -852,16 +852,17 @@
     "telefone": "(85) 3491-7392",
     "email": "anezioferreira@yahoo.com.br",
     "tipo_credenciamento": "Número de Credenciamento",
-    "numero_credenciamento": "TR5471304 2024",
+    "numero_credenciamento": "TR5471304/2024",
     "validade_credenciamento": "26/11/2029",
     "descricao_licenca": "LICENÇA DE OPERAÇÃO (RENOVAÇÃO) - LO_PD003/2023 (S2022042830)",
     "validade_licenca": "19/01/2028",
     "modalidades": [
-      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA",
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
     ],
     "ativo": true,
     "criado_em": "2026-08-27T14:44:42",
-    "atualizado_em": "2026-08-27T14:44:42"
+    "atualizado_em": "2026-08-27T17:28:09"
   },
   {
     "id": "8e2d70f7-9323-4949-8add-4b2b1f10dcf4",
