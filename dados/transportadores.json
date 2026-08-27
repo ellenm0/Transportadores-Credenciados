@@ -838,5 +838,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T14:35:56",
     "atualizado_em": "2026-08-27T14:35:56"
+  },
+  {
+    "id": "8869dcea-1b32-4c9e-b55f-de3497633a97",
+    "nome": "ANEZIO FERREIRA LIMA FILHO 35558105372",
+    "cnpj": "11564162000179",
+    "logradouro": "RUA RAUL UCHOA",
+    "numero": "528",
+    "complemento": "ALTOS",
+    "bairro": "BOM FUTURO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3491-7392",
+    "email": "anezioferreira@yahoo.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR5471304 2024",
+    "validade_credenciamento": "26/11/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO (RENOVAÇÃO) - LO_PD003/2023 (S2022042830)",
+    "validade_licenca": "19/01/2028",
+    "modalidades": [
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T14:44:42",
+    "atualizado_em": "2026-08-27T14:44:42"
   }
 ]
