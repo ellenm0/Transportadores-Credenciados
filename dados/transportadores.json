@@ -1128,5 +1128,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T17:55:51",
     "atualizado_em": "2026-08-27T17:55:51"
+  },
+  {
+    "id": "cc770687-6610-4827-b4d1-efa222511a1d",
+    "nome": "ML LOGISTICA LTDA",
+    "cnpj": "54216299000145",
+    "logradouro": "AVENIDA DOUTOR MENDEL STEINBRUCH",
+    "numero": "2903",
+    "complemento": "A",
+    "bairro": "PAVUNA",
+    "municipio": "PACATUBA",
+    "uf": "CE",
+    "telefone": "(85) 8137-4568",
+    "email": "MUNDOLIMPORECICLADOS@GMAIL.COM",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P108958/2025",
+    "validade_credenciamento": "01/08/2029",
+    "descricao_licenca": "DISPENSA DE LICENÇA AMBIENTAL Nº 08/26",
+    "validade_licenca": "INDETERMINADA",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T18:11:17",
+    "atualizado_em": "2026-08-27T18:11:17"
   }
 ]
