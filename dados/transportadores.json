@@ -1032,5 +1032,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T17:34:13",
     "atualizado_em": "2026-08-27T17:34:13"
+  },
+  {
+    "id": "05ff5420-b388-4fe2-9643-44e4a5770626",
+    "nome": "R L RECICLAGEM AMBIENTAL LTDA",
+    "cnpj": "11440734000108",
+    "logradouro": "AVENIDA BERNARDO MANUEL",
+    "numero": "7201",
+    "complemento": "",
+    "bairro": "SERRINHA",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3122-9381",
+    "email": "marciorafael798@hotmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P378360/2024",
+    "validade_credenciamento": "08/01/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL DE REGULARIZAÇÃO PARA ATIVIDADES - LAR0000903/2023",
+    "validade_licenca": "11/07/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T17:38:26",
+    "atualizado_em": "2026-08-27T17:38:26"
   }
 ]
