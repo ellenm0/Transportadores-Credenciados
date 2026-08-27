@@ -1249,5 +1249,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T18:39:56",
     "atualizado_em": "2026-08-27T18:39:56"
+  },
+  {
+    "id": "66921fe8-91de-4968-bf01-f047babcf613",
+    "nome": "FABIANO PEREIRA DE OLIVEIRA LTDA (ECOBAN)",
+    "cnpj": "00563915000105",
+    "logradouro": "R DR. JOSE DIAS",
+    "numero": "23",
+    "complemento": "",
+    "bairro": "CENTRO",
+    "municipio": "QUIXERAMOBIM",
+    "uf": "CE",
+    "telefone": "(88) 3441-0014",
+    "email": "dep.ecoban@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P168471/2024",
+    "validade_credenciamento": "20/09/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO Nº 347/2020 - DICOP",
+    "validade_licenca": "11/07/2028",
+    "modalidades": [
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T18:57:25",
+    "atualizado_em": "2026-08-27T18:57:25"
   }
 ]
