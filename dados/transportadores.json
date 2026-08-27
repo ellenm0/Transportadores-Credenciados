@@ -763,5 +763,30 @@
     "ativo": true,
     "criado_em": "2026-08-27T14:04:59",
     "atualizado_em": "2026-08-27T14:04:59"
+  },
+  {
+    "id": "df19ede9-c708-4181-bb4e-926d75c8fda7",
+    "nome": "G R SARAIVA TRANSPORTES ESPECIALIZADOS LTDA",
+    "cnpj": "13081242000107",
+    "logradouro": "RODOVIA BR 116",
+    "numero": "3020",
+    "complemento": "A",
+    "bairro": "BARROSO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3119-9254",
+    "email": "grstransportes@grstransportes.com.br",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P188695/2024",
+    "validade_credenciamento": "20/09/2028",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD167/2020 (S2020011470)",
+    "validade_licenca": "30/12/2025",
+    "modalidades": [
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)",
+      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T14:12:06",
+    "atualizado_em": "2026-08-27T14:12:06"
   }
 ]
