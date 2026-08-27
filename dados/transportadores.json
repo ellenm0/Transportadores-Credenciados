@@ -643,5 +643,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T12:37:06",
     "atualizado_em": "2026-08-27T12:37:06"
+  },
+  {
+    "id": "4da30eb1-bae9-4aaa-b188-db79335892b3",
+    "nome": "ATHOS LOCACOES LTDA",
+    "cnpj": "37843561000162",
+    "logradouro": "RUA ADELIA FEIJO",
+    "numero": "301",
+    "complemento": "",
+    "bairro": "BOA VISTA / CASTELÃO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3289-3612",
+    "email": "LOCACOESATHOS@GMAIL.COM",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P393059/2024",
+    "validade_credenciamento": "30/10/2028",
+    "descricao_licenca": "LICENÇA AMBIENTAL PARA ATIVIDADES - LAR_PD088/2024 (S2024073766)",
+    "validade_licenca": "10/06/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T13:18:46",
+    "atualizado_em": "2026-08-27T13:18:46"
   }
 ]
