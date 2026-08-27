@@ -1080,5 +1080,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T17:43:29",
     "atualizado_em": "2026-08-27T17:43:29"
+  },
+  {
+    "id": "fe5a234e-3d11-44e5-b8d7-32134c0eb279",
+    "nome": "CEARÁ ÓLEO VEGETAL LTDA",
+    "cnpj": "54348992000171",
+    "logradouro": "RUA MUTAMBA",
+    "numero": "170",
+    "complemento": "LT. 07, QD. R",
+    "bairro": "JANGURUSSU",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 8923-9071",
+    "email": "isabellissantoss@outlook.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P465764/2024",
+    "validade_credenciamento": "17/12/2028",
+    "descricao_licenca": "LICENÇA AMBIENTAL PARA ATIVIDADES - LAR_PD103/2024 (S2024076902)",
+    "validade_licenca": "01/07/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T17:48:23",
+    "atualizado_em": "2026-08-27T17:48:23"
   }
 ]
