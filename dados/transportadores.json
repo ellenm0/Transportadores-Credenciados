@@ -1176,5 +1176,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T18:29:35",
     "atualizado_em": "2026-08-27T18:29:35"
+  },
+  {
+    "id": "92efc620-6a4a-4b4e-8dfa-f413258da3b4",
+    "nome": "DESENTUPIDORA ESTRELA DO SOL LTDA",
+    "cnpj": "00189723000180",
+    "logradouro": "AVENIDA GONCALVES DIAS",
+    "numero": "244",
+    "complemento": "",
+    "bairro": "AMADEU FURTADO",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3281-2666",
+    "email": "desentupidoraestrelasol@yahoo.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR2176451/2024",
+    "validade_credenciamento": "27/07/2030",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO (RENOVAÇÃO) - LO_PD103/2021 (S2021018116)",
+    "validade_licenca": "24/08/2026",
+    "modalidades": [
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T18:30:44",
+    "atualizado_em": "2026-08-27T18:30:44"
   }
 ]
