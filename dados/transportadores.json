@@ -1321,5 +1321,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T19:19:56",
     "atualizado_em": "2026-08-27T19:19:56"
+  },
+  {
+    "id": "de3eec9f-54b0-4f28-bf00-fb191a5d2d44",
+    "nome": "ECO CENTRAL AMBIENTAL SERVICOS E RECICLAGEM LTDA",
+    "cnpj": "35456234000122",
+    "logradouro": "R PAULO AFONSO",
+    "numero": "3047",
+    "complemento": "A",
+    "bairro": "PARQUE TIJUCA",
+    "municipio": "MARACANAU",
+    "uf": "CE",
+    "telefone": "(85) 3082-0505",
+    "email": "ecocentral.ambiental@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P533510/2025",
+    "validade_credenciamento": "13/03/2030",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO Nº 2025000408",
+    "validade_licenca": "08/12/2028",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T19:44:44",
+    "atualizado_em": "2026-08-27T19:44:44"
   }
 ]
