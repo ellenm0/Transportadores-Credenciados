@@ -1008,5 +1008,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T17:26:51",
     "atualizado_em": "2026-08-27T17:26:51"
+  },
+  {
+    "id": "c1656292-92e4-4107-80d9-4c91379db5a0",
+    "nome": "METALPEL COMERCIO DE MATERIAIS RECICLAVEIS LTDA",
+    "cnpj": "14607476000108",
+    "logradouro": "RUA JARDIM BOTANICO",
+    "numero": "01",
+    "complemento": "",
+    "bairro": "ANCURI",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3472-1812",
+    "email": "metalpel.papel@hotmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P378150/2024",
+    "validade_credenciamento": "14/03/2029",
+    "descricao_licenca": "LICENÇA DE OPERAÇÃO - LO_PD025/2026 (S2025107788)",
+    "validade_licenca": "29/04/2031",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T17:34:13",
+    "atualizado_em": "2026-08-27T17:34:13"
   }
 ]
