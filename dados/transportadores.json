@@ -667,5 +667,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T13:18:46",
     "atualizado_em": "2026-08-27T13:18:46"
+  },
+  {
+    "id": "2a8bee13-e735-4805-bb9e-5a690318fc0f",
+    "nome": "JS MINERACAO E CONSTRUCOES LTDA",
+    "cnpj": "32381173000193",
+    "logradouro": "RUA IRENICE SANTANA",
+    "numero": "163",
+    "complemento": "",
+    "bairro": "JABUTI",
+    "municipio": "EUSEBIO",
+    "uf": "CE",
+    "telefone": "(85) 9725-8095",
+    "email": "jsregularizacoes@gmail.com",
+    "tipo_credenciamento": "Processo de Credenciamento",
+    "numero_credenciamento": "P399029/2024",
+    "validade_credenciamento": "14/03/2029",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 9101/2023 - SUPAD",
+    "validade_licenca": "26/05/2026",
+    "modalidades": [
+      "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-27T13:24:49",
+    "atualizado_em": "2026-08-27T13:24:49"
   }
 ]
