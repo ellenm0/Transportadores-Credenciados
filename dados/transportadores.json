@@ -1422,7 +1422,7 @@
   },
   {
     "id": "06f1fcb6-6060-4720-a506-242b40aa3264",
-    "nome": "DESENTUPIDORA PADRAO LTDA",
+    "nome": "DESENTUPIDORA PADRÃO LTDA",
     "cnpj": "00105976000129",
     "logradouro": "RUA JOAO FRANCISCO CAVALCANTE",
     "numero": "420",
@@ -1435,14 +1435,14 @@
     "tipo_credenciamento": "Número de Credenciamento",
     "numero_credenciamento": "TR7238081/2025",
     "validade_credenciamento": "26/05/2030",
-    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 425/2023 - DICOP\nProcesso SEMACE: 2023-417619/TEC/RENLAC\nNº SPU: 07054515/2023",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 425/2023 - DICOP - Processo SEMACE: 2023-417619/TEC/RENLAC",
     "validade_licenca": "12/11/2026",
     "modalidades": [
       "COLETA DE EFLUENTES"
     ],
     "ativo": true,
     "criado_em": "2026-08-27T20:23:16",
-    "atualizado_em": "2026-08-27T20:28:20"
+    "atualizado_em": "2026-08-28T12:00:17"
   },
   {
     "id": "6bdc0f37-2148-44d2-8de9-ac016ddb5213",
