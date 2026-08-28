@@ -1443,5 +1443,29 @@
     "ativo": true,
     "criado_em": "2026-08-27T20:23:16",
     "atualizado_em": "2026-08-27T20:28:20"
+  },
+  {
+    "id": "6bdc0f37-2148-44d2-8de9-ac016ddb5213",
+    "nome": "PAULO ROBERTO DA CRUZ MELO (DESENTUPIDORA ALERTA)",
+    "cnpj": "08530618000175",
+    "logradouro": "R DOUTOR HUMBERTO RODRIGUES",
+    "numero": "200",
+    "complemento": "",
+    "bairro": "MONDUBIM",
+    "municipio": "FORTALEZA",
+    "uf": "CE",
+    "telefone": "(85) 3253-2000",
+    "email": "paulorobertodacruzmelo@gmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR5957387/2025",
+    "validade_credenciamento": "24/03/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL DE REGULARIZAÇÃO PARA ATIVIDADES - LAR0000955/2023",
+    "validade_licenca": "30/09/2028",
+    "modalidades": [
+      "COLETA DE EFLUENTES"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-28T11:47:15",
+    "atualizado_em": "2026-08-28T11:47:15"
   }
 ]
