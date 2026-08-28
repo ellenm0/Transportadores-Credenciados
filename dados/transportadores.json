@@ -901,16 +901,16 @@
     "telefone": "(85) 98896-5545",
     "email": "atendimentobettransportes@gmail.com",
     "tipo_credenciamento": "Número de Credenciamento",
-    "numero_credenciamento": "TR9583207_2024",
+    "numero_credenciamento": "TR9583207/2024",
     "validade_credenciamento": "EM RENOVAÇÃO",
-    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO NO 243/2025 - SUPAD\nProcesso SEMACE: 2025-464019/TEC/RENLAC\nSPU: 57022010408202515",
-    "validade_licenca": "",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO NO 243/2025 - SUPAD - Processo SEMACE: 2025-464019/TEC/RENLAC",
+    "validade_licenca": "16/05/2028",
     "modalidades": [
       "COLETA DE RESÍDUOS PERIGOSOS"
     ],
     "ativo": true,
     "criado_em": "2026-08-27T16:31:49",
-    "atualizado_em": "2026-08-27T16:31:49"
+    "atualizado_em": "2026-08-28T11:57:57"
   },
   {
     "id": "82aa8dbb-5bc0-4cd8-8fa8-3a3410944990",
