@@ -1467,5 +1467,29 @@
     "ativo": true,
     "criado_em": "2026-08-28T11:47:15",
     "atualizado_em": "2026-08-28T11:47:15"
+  },
+  {
+    "id": "209952df-472e-45c0-9ff9-c074935ca4a6",
+    "nome": "SUBNUTRA COMERCIO E COLETA DE OLEO E GORDURA VEGETAL LTDA",
+    "cnpj": "16964227000197",
+    "logradouro": "AVENIDA MANUEL FELICIANO DE LIMA",
+    "numero": "4027",
+    "complemento": "",
+    "bairro": "CAMARA",
+    "municipio": "AQUIRAZ",
+    "uf": "CE",
+    "telefone": "(85) 9701-4871",
+    "email": "andre86andrade@gmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR7197776/2025",
+    "validade_credenciamento": "29/05/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 1060/2026 - SUPAD",
+    "validade_licenca": "14/04/2029",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-08-28T11:52:03",
+    "atualizado_em": "2026-08-28T11:52:03"
   }
 ]
