@@ -228,5 +228,33 @@
       "criado_em": "2026-08-27T20:23:16",
       "atualizado_em": "2026-08-27T20:24:20"
     }
+  },
+  {
+    "data": "2026-08-28T11:57:57",
+    "acao": "ANTES DA EDIÇÃO",
+    "transportador": {
+      "id": "0ea4f610-f185-4bbd-aa3e-63c46a811104",
+      "nome": "C. NAPOLEAO BASTOS TIGRE",
+      "cnpj": "41301508000107",
+      "logradouro": "TRAVESSA SAO JOSE",
+      "numero": "S/N",
+      "complemento": "",
+      "bairro": "TIMBU",
+      "municipio": "EUSEBIO",
+      "uf": "CE",
+      "telefone": "(85) 98896-5545",
+      "email": "atendimentobettransportes@gmail.com",
+      "tipo_credenciamento": "Número de Credenciamento",
+      "numero_credenciamento": "TR9583207_2024",
+      "validade_credenciamento": "EM RENOVAÇÃO",
+      "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO NO 243/2025 - SUPAD\nProcesso SEMACE: 2025-464019/TEC/RENLAC\nSPU: 57022010408202515",
+      "validade_licenca": "",
+      "modalidades": [
+        "COLETA DE RESÍDUOS PERIGOSOS"
+      ],
+      "ativo": true,
+      "criado_em": "2026-08-27T16:31:49",
+      "atualizado_em": "2026-08-27T16:31:49"
+    }
   }
 ]
