@@ -3,6 +3,8 @@ import requests
 import json
 import base64
 import uuid
+import time
+import unicodedata
 from datetime import datetime, date
 from io import BytesIO
 import streamlit.components.v1 as components
@@ -26,6 +28,73 @@ MODALIDADES = [
     "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA",
     "COLETA DE EFLUENTES",
 ]
+
+
+# Texto oficial (enunciado) de cada modalidade, conforme o PDF de referência.
+# Isso é o que fazia o relatório gerado pelo sistema ficar "incompleto" em
+# relação ao PDF: faltava esse parágrafo logo abaixo de cada MODALIDADE.
+MODALIDADES_DESCRICOES = {
+    "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS": (
+        "Destinada à coleta de resíduos sólidos caracterizados como da classe II, não "
+        "perigosos, pela NBR 10.004, da Associação Brasileira de Normas Técnicas, "
+        "gerados em atividades comerciais, industriais e de prestadores de serviços, "
+        "em volume igual ou superior 100 (cem) litros por dia."
+    ),
+    "COLETA DE RESÍDUOS PERIGOSOS": (
+        "Destinada à coleta de resíduos sólidos caracterizados como da classe I, "
+        "perigosos, pela NBR 10.004, da Associação Brasileira de Normas Técnicas, "
+        "gerados em atividades comerciais, industriais e de prestadores de serviços, "
+        "independente do seu volume."
+    ),
+    "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL COM FORNECIMENTO DE CAÇAMBA ESTACIONÁRIA": (
+        "Destinada, exclusivamente, à coleta de resíduos da construção civil "
+        "provenientes de escavação, demolição e de serviços de terraplenagem, bem "
+        "como dos provenientes de podas ou corte de árvores."
+    ),
+    "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE": (
+        "Destinada, exclusivamente, à coleta de resíduos da construção civil "
+        "provenientes de escavação, demolição e de serviços de terraplenagem, bem "
+        "como dos provenientes de podas ou corte de árvores."
+    ),
+    "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)": (
+        "Destinada à coleta de resíduos de serviços de saúde gerados em "
+        "estabelecimentos cujas atividades estejam relacionadas com a atenção à "
+        "saúde humana ou animal, inclusive os serviços de assistência domiciliar, "
+        "laboratórios analíticos de produtos para saúde, necrotérios, funerárias e "
+        "serviços onde se realizem atividades de embalsamamento (tanatopraxia e "
+        "somatoconservação), serviços de medicina legal, drogarias e farmácias, "
+        "inclusive as de manipulação, estabelecimentos de ensino e pesquisa na área "
+        "de saúde, centros de controle de zoonoses, distribuidores de produtos "
+        "farmacêuticos, importadores, distribuidores de materiais e controles para "
+        "diagnóstico in vitro, unidades móveis de atendimento à saúde, serviços de "
+        "acupuntura, serviços de piercing e tatuagem, salões de beleza e estética, "
+        "dentre outros afins."
+    ),
+    "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)": (
+        "Destinada, exclusivamente, à coleta de resíduos de serviços de saúde de "
+        "pequenos geradores ou ambulatorial - assim definidos conforme NBR ABNT "
+        "12.980/1993, cuja geração seja inferior a 700 L por semana ou a 150 L dia."
+    ),
+    "COLETA DE RESÍDUOS RECICLÁVEIS": (
+        "Destinados à coleta de resíduos sólidos que devem retornar ao setor "
+        "empresarial, após o uso pelo consumidor, para reaproveitamento, em seu "
+        "ciclo ou em outros ciclos produtivos, ou outra destinação final "
+        "ambientalmente adequada, na forma do art. 33 da Lei Federal nº 12.305, de "
+        "02 de agosto de 2010."
+    ),
+    "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA": (
+        "Destinados à coleta de resíduos sólidos que devem retornar ao setor "
+        "empresarial, após o uso pelo consumidor, para reaproveitamento, em seu "
+        "ciclo ou em outros ciclos produtivos, ou outra destinação final "
+        "ambientalmente adequada, na forma do art. 33 da Lei Federal nº 12.305, de "
+        "02 de agosto de 2010."
+    ),
+    "COLETA DE EFLUENTES": (
+        "Destinados à coleta e transporte de efluentes domésticos e/ou industriais "
+        "(limpa fossas) no município de Fortaleza, nos termos do Decreto Municipal "
+        "nº 14.181, de 09 de março de 2018."
+    ),
+}
 
 
 def agora_iso():
@@ -52,6 +121,39 @@ def formatar_cnpj(valor):
         )
 
     return str(valor or "")
+
+
+def remover_acentos(texto):
+    """
+    Remove acentos de um texto, mantendo as letras base.
+    Usado para permitir buscas que encontrem "JOÃO" digitando "JOAO"
+    (e vice-versa).
+    """
+
+    texto_normalizado = unicodedata.normalize(
+        "NFKD",
+        str(texto or "")
+    )
+
+    return "".join(
+        caractere
+        for caractere in texto_normalizado
+        if not unicodedata.combining(caractere)
+    )
+
+
+def normalizar_busca(texto):
+    return remover_acentos(texto).upper().strip()
+
+
+# ---------------------------------------------------------------------------
+# Sessão HTTP reaproveitável (evita reabrir conexão a cada chamada ao GitHub,
+# o que ajuda a deixar o aplicativo mais rápido).
+# ---------------------------------------------------------------------------
+
+@st.cache_resource
+def obter_sessao_http():
+    return requests.Session()
 
 
 def github_config():
@@ -100,7 +202,9 @@ def github_request(
         "X-GitHub-Api-Version": "2022-11-28"
     })
 
-    return requests.request(
+    sessao = obter_sessao_http()
+
+    return sessao.request(
         method,
         url,
         headers=headers,
@@ -302,7 +406,7 @@ def salvar_arquivo_github(
     )
 
     # ---------------------------------------------------------
-    # CORREÇÃO PRINCIPAL:
+    # CORREÇÃO PRINCIPAL (já existente no seu código):
     # buscar o SHA atual diretamente no GitHub
     # ---------------------------------------------------------
 
@@ -514,6 +618,75 @@ def garantir_dados_no_github(
             None,
             "Criar histórico de relatórios"
         )
+
+
+# ---------------------------------------------------------------------------
+# CACHE EM MEMÓRIA (por sessão do navegador)
+#
+# Antes, TODA interação no app (trocar de aba, digitar, clicar em qualquer
+# botão) chamava carregar_dados() de novo, que fazia 3 requisições ao GitHub
+# a cada clique. Isso deixava o app lento e contribuía para a sensação de
+# precisar clicar duas vezes.
+#
+# Agora os dados são buscados uma vez e guardados em st.session_state.
+# As telas passam a usar essa cópia em memória, e só voltam a consultar o
+# GitHub quando: (1) o usuário clica em "Atualizar dados", ou (2) o cache
+# expira sozinho depois de alguns minutos (para não ficar desatualizado se
+# outra pessoa também estiver usando o sistema).
+# ---------------------------------------------------------------------------
+
+CACHE_TTL_SEGUNDOS = 300  # 5 minutos
+
+
+def carregar_dados_cache(forcar=False):
+
+    cache_expirado = False
+
+    if "cache_timestamp" in st.session_state:
+        cache_expirado = (
+            time.time() - st.session_state["cache_timestamp"]
+        ) > CACHE_TTL_SEGUNDOS
+
+    precisa_buscar = (
+        forcar
+        or "cache_carregado" not in st.session_state
+        or cache_expirado
+    )
+
+    if precisa_buscar:
+
+        with st.spinner("Carregando dados do GitHub..."):
+
+            transportadores, historico, relatorios, sha_t, sha_h, sha_r = (
+                carregar_dados()
+            )
+
+            garantir_dados_no_github(
+                transportadores,
+                historico,
+                relatorios,
+                sha_t,
+                sha_h,
+                sha_r
+            )
+
+        st.session_state["transportadores"] = transportadores
+        st.session_state["historico"] = historico
+        st.session_state["relatorios"] = relatorios
+        st.session_state["sha_t"] = sha_t
+        st.session_state["sha_h"] = sha_h
+        st.session_state["sha_r"] = sha_r
+        st.session_state["cache_carregado"] = True
+        st.session_state["cache_timestamp"] = time.time()
+
+    return (
+        st.session_state["transportadores"],
+        st.session_state["historico"],
+        st.session_state["relatorios"],
+        st.session_state["sha_t"],
+        st.session_state["sha_h"],
+        st.session_state["sha_r"]
+    )
 
 
 def snapshot_transportador(
@@ -741,6 +914,12 @@ def gerar_relatorio(
     transportadores,
     data_atualizacao
 ):
+    """
+    Gera o texto completo do relatório, no mesmo formato do PDF de
+    referência: título, data, e para cada modalidade o cabeçalho
+    "MODALIDADE: ..." seguido do enunciado oficial da modalidade e,
+    em seguida, as empresas credenciadas para ela.
+    """
 
     linhas = [
         "RELAÇÃO DE TRANSPORTADORES LICENCIADOS E CREDENCIADOS",
@@ -776,6 +955,16 @@ def gerar_relatorio(
         linhas.append(
             f"MODALIDADE: {modalidade}"
         )
+
+        descricao_modalidade = MODALIDADES_DESCRICOES.get(
+            modalidade,
+            ""
+        )
+
+        if descricao_modalidade:
+            linhas.append(
+                descricao_modalidade
+            )
 
         linhas.append("")
 
@@ -826,6 +1015,18 @@ def gerar_relatorio(
 def criar_docx(
     texto
 ):
+    """
+    Converte o texto do relatório em um .docx formatado:
+      - Título e data: negrito, centralizados
+      - "MODALIDADE: ...": negrito, centralizado
+      - Enunciado da modalidade (texto logo abaixo do MODALIDADE): itálico,
+        justificado
+      - Nome da empresa (linha imediatamente antes de "CNPJ: ..."): negrito
+        e sublinhado
+      - Demais linhas: texto normal
+      - Espaçamento entre linhas de aproximadamente 1,15 em todo o
+        documento
+    """
 
     from docx import Document
     from docx.shared import Pt
@@ -840,62 +1041,98 @@ def criar_docx(
     secao.left_margin = Pt(60)
     secao.right_margin = Pt(60)
 
-    for linha in texto.splitlines():
+    linhas = texto.splitlines()
+
+    for indice, linha in enumerate(linhas):
+
+        linha_limpa = linha.strip()
+
+        proxima_nao_vazia = ""
+
+        for seguinte in linhas[indice + 1:]:
+            if seguinte.strip():
+                proxima_nao_vazia = seguinte.strip()
+                break
+
+        anterior_nao_vazia = ""
+
+        for anterior in reversed(linhas[:indice]):
+            if anterior.strip():
+                anterior_nao_vazia = anterior.strip()
+                break
 
         paragrafo = documento.add_paragraph()
 
-        paragrafo.paragraph_format.space_after = Pt(4)
+        formato = paragrafo.paragraph_format
+        formato.space_after = Pt(4)
+        formato.line_spacing = 1.15
 
-        if linha.startswith(
+        if linha_limpa.startswith(
             "RELAÇÃO DE TRANSPORTADORES"
         ):
 
-            paragrafo.alignment = (
-                WD_ALIGN_PARAGRAPH.CENTER
-            )
+            formato.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            formato.space_after = Pt(6)
 
-            run = paragrafo.add_run(
-                linha
-            )
-
+            run = paragrafo.add_run(linha_limpa)
             run.bold = True
-            run.font.size = Pt(14)
+            run.font.size = Pt(15)
 
-        elif linha.startswith(
+        elif linha_limpa.startswith(
             "ATUALIZADA EM"
         ):
 
-            paragrafo.alignment = (
-                WD_ALIGN_PARAGRAPH.CENTER
-            )
+            formato.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            formato.space_after = Pt(14)
 
-            run = paragrafo.add_run(
-                linha
-            )
-
+            run = paragrafo.add_run(linha_limpa)
             run.bold = True
-            run.font.size = Pt(11)
+            run.font.size = Pt(12)
 
-        elif linha.startswith(
+        elif linha_limpa.startswith(
             "MODALIDADE:"
         ):
 
-            paragrafo.paragraph_format.space_before = Pt(12)
+            formato.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            formato.space_before = Pt(16)
+            formato.space_after = Pt(4)
 
-            run = paragrafo.add_run(
-                linha
-            )
-
+            run = paragrafo.add_run(linha_limpa)
             run.bold = True
+            run.font.size = Pt(12)
+
+        elif (
+            linha_limpa
+            and proxima_nao_vazia.startswith("CNPJ:")
+        ):
+
+            # Nome da empresa: negrito + sublinhado
+            formato.space_before = Pt(8)
+
+            run = paragrafo.add_run(linha_limpa)
+            run.bold = True
+            run.underline = True
             run.font.size = Pt(11)
 
-        elif linha.strip():
+        elif (
+            anterior_nao_vazia.startswith("MODALIDADE:")
+            and linha_limpa
+        ):
 
-            run = paragrafo.add_run(
-                linha
-            )
+            # Enunciado/descrição oficial da modalidade
+            formato.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+            formato.space_after = Pt(10)
 
+            run = paragrafo.add_run(linha_limpa)
+            run.italic = True
             run.font.size = Pt(10)
+
+        elif linha_limpa:
+
+            run = paragrafo.add_run(linha_limpa)
+            run.font.size = Pt(10)
+
+        # Linhas em branco viram parágrafos vazios (apenas espaçamento).
 
     arquivo = BytesIO()
 
@@ -1770,7 +2007,7 @@ def tela_formulario(
 
             # -------------------------------------------------
             # SALVA O CADASTRO
-            # O método de salvamento agora busca o SHA atual.
+            # O método de salvamento sempre busca o SHA atual.
             # -------------------------------------------------
 
             ok1, erro1 = salvar_arquivo_github(
@@ -1846,7 +2083,9 @@ def tela_transportadores(
         value=False
     )
 
-    termo = busca.strip().lower()
+    # Busca sem diferenciar acentuação nem maiúsculas/minúsculas:
+    # "joao", "JOÃO" e "João" agora encontram o mesmo cadastro.
+    termo = normalizar_busca(busca)
 
     filtrados = []
 
@@ -1861,11 +2100,11 @@ def tela_transportadores(
         ):
             continue
 
-        texto = (
+        texto = normalizar_busca(
             f"{transportador.get('nome', '')} "
             f"{formatar_cnpj(transportador.get('cnpj', ''))} "
             f"{normalizar_cnpj(transportador.get('cnpj', ''))}"
-        ).lower()
+        )
 
         if (
             not termo
@@ -2490,24 +2729,6 @@ def main():
 
         st.stop()
 
-    (
-        transportadores,
-        historico,
-        relatorios,
-        sha_t,
-        sha_h,
-        sha_r
-    ) = carregar_dados()
-
-    garantir_dados_no_github(
-        transportadores,
-        historico,
-        relatorios,
-        sha_t,
-        sha_h,
-        sha_r
-    )
-
     if "pagina" not in st.session_state:
 
         st.session_state[
@@ -2520,8 +2741,32 @@ def main():
             "editando_id"
         ] = None
 
+    (
+        transportadores,
+        historico,
+        relatorios,
+        sha_t,
+        sha_h,
+        sha_r
+    ) = carregar_dados_cache()
+
     st.sidebar.title(
         "Menu"
+    )
+
+    if st.sidebar.button(
+        "🔄 Atualizar dados",
+        use_container_width=True
+    ):
+
+        carregar_dados_cache(
+            forcar=True
+        )
+
+        st.rerun()
+
+    st.sidebar.caption(
+        f"{len(transportadores)} transportador(es) carregado(s)."
     )
 
     opcoes = [
@@ -2532,19 +2777,27 @@ def main():
         "Relatórios Anteriores"
     ]
 
-    pagina_atual = st.sidebar.radio(
+    # ---------------------------------------------------------------
+    # CORREÇÃO DO "CLIQUE DUPLO":
+    # Antes, este campo usava `index=` calculado a partir do
+    # session_state, e o próprio código reescrevia
+    # st.session_state["pagina"] logo em seguida. Isso fazia o rádio
+    # e o session_state ficarem "um passo atrasados" um do outro,
+    # exigindo dois cliques para a página realmente mudar.
+    #
+    # Agora o widget é ligado diretamente ao session_state através de
+    # key="pagina" — sem `index` e sem reatribuição manual depois —
+    # que é a forma correta/recomendada pelo Streamlit e resolve o
+    # problema com um único clique.
+    # ---------------------------------------------------------------
+
+    st.sidebar.radio(
         "Navegação",
         opcoes,
-        index=opcoes.index(
-            st.session_state[
-                "pagina"
-            ]
-        )
+        key="pagina"
     )
 
-    st.session_state[
-        "pagina"
-    ] = pagina_atual
+    pagina_atual = st.session_state["pagina"]
 
     if pagina_atual == "Início":
 
