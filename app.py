@@ -30,9 +30,6 @@ MODALIDADES = [
 ]
 
 
-# Texto oficial (enunciado) de cada modalidade, conforme o PDF de referência.
-# Isso é o que fazia o relatório gerado pelo sistema ficar "incompleto" em
-# relação ao PDF: faltava esse parágrafo logo abaixo de cada MODALIDADE.
 MODALIDADES_DESCRICOES = {
     "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS": (
         "Destinada à coleta de resíduos sólidos caracterizados como da classe II, não "
@@ -125,9 +122,8 @@ def formatar_cnpj(valor):
 
 def remover_acentos(texto):
     """
-    Remove acentos de um texto, mantendo as letras base.
-    Usado para permitir buscas que encontrem "JOÃO" digitando "JOAO"
-    (e vice-versa).
+    Remove acentos de um texto, mantendo as letras base, para permitir que
+    a busca encontre "JOÃO" digitando "JOAO" (e vice-versa).
     """
 
     texto_normalizado = unicodedata.normalize(
@@ -146,9 +142,117 @@ def normalizar_busca(texto):
     return remover_acentos(texto).upper().strip()
 
 
+def interpretar_validade(texto):
+    """
+    Tenta interpretar o campo de validade como uma data no formato
+    brasileiro DD/MM/AAAA.
+
+    Retorna um objeto `date` quando o texto é uma data válida, ou None
+    quando não é (por exemplo "EM RENOVAÇÃO", "INDETERMINADA", vazio, ou
+    qualquer outro texto livre). Isso garante que esses textos nunca sejam
+    tratados como data vencida.
+    """
+
+    texto = str(texto or "").strip()
+
+    if not texto:
+        return None
+
+    try:
+        return datetime.strptime(texto, "%d/%m/%Y").date()
+    except ValueError:
+        return None
+
+
+def gerar_status_transportador(transportador):
+    """
+    Calcula a situação atual do credenciamento SEM alterar o cadastro,
+    comparando a validade com a data de hoje. A conta usa subtração de
+    datas do Python (date - date), que já trata corretamente anos
+    bissextos e qualquer diferença de calendário.
+
+    Retorna um dicionário com:
+      - efetivamente_ativo: se deve contar como ativo na listagem
+      - vencido: se o credenciamento já passou da validade
+      - rotulo: texto de status a ser exibido na tela
+    """
+
+    ativo_manual = transportador.get(
+        "ativo",
+        True
+    )
+
+    if not ativo_manual:
+
+        return {
+            "efetivamente_ativo": False,
+            "vencido": False,
+            "rotulo": "INATIVO"
+        }
+
+    data_validade = interpretar_validade(
+        transportador.get(
+            "validade_credenciamento",
+            ""
+        )
+    )
+
+    if data_validade is None:
+
+        # Texto livre (EM RENOVAÇÃO, INDETERMINADA, vazio etc.):
+        # não há data para calcular vencimento, então não é tratado
+        # como vencido.
+        return {
+            "efetivamente_ativo": True,
+            "vencido": False,
+            "rotulo": "ATIVO"
+        }
+
+    hoje = date.today()
+
+    dias_restantes = (
+        data_validade - hoje
+    ).days
+
+    if dias_restantes < 0:
+
+        return {
+            "efetivamente_ativo": False,
+            "vencido": True,
+            "rotulo": "INATIVO — CREDENCIAMENTO VENCIDO"
+        }
+
+    if dias_restantes == 0:
+
+        return {
+            "efetivamente_ativo": True,
+            "vencido": False,
+            "rotulo": "ATIVO — vence hoje"
+        }
+
+    if dias_restantes <= 90:
+
+        unidade = "dia" if dias_restantes == 1 else "dias"
+
+        return {
+            "efetivamente_ativo": True,
+            "vencido": False,
+            "rotulo": (
+                f"ATIVO — {dias_restantes} {unidade} "
+                f"para seu vencimento"
+            )
+        }
+
+    return {
+        "efetivamente_ativo": True,
+        "vencido": False,
+        "rotulo": "ATIVO"
+    }
+
+
 # ---------------------------------------------------------------------------
-# Sessão HTTP reaproveitável (evita reabrir conexão a cada chamada ao GitHub,
-# o que ajuda a deixar o aplicativo mais rápido).
+# Sessão HTTP reaproveitável (evita reabrir conexão a cada chamada ao
+# GitHub, deixando o aplicativo mais rápido).
 # ---------------------------------------------------------------------------
 
 @st.cache_resource
@@ -378,9 +482,14 @@ def salvar_arquivo_github(
     Salva o arquivo no GitHub.
 
     IMPORTANTE:
-    Antes de salvar, busca o SHA mais recente diretamente
-    no GitHub. Isso evita problemas quando o SHA armazenado
-    pelo aplicativo está desatualizado.
+    Antes de salvar, busca o SHA mais recente diretamente no GitHub. Isso
+    evita conflitos de versão (SHA antigo) quando o arquivo tiver sido
+    alterado entre o carregamento e o salvamento.
+
+    Esta função NUNCA envia uma lista vazia "do nada": ela sempre recebe
+    a lista completa já carregada (transportadores, historico ou
+    relatorios), apenas com o item alterado/adicionado/removido — os
+    demais registros são sempre preservados.
     """
 
     token, repo, branch, data_dir = github_config()
@@ -404,11 +513,6 @@ def salvar_arquivo_github(
         f"https://api.github.com/repos/"
         f"{repo}/contents/{caminho}"
     )
-
-    # ---------------------------------------------------------
-    # CORREÇÃO PRINCIPAL (já existente no seu código):
-    # buscar o SHA atual diretamente no GitHub
-    # ---------------------------------------------------------
 
     sha_atual, consulta_ok, erro_consulta = obter_sha_atual(
         nome_arquivo
@@ -457,8 +561,8 @@ def salvar_arquivo_github(
 
     # ---------------------------------------------------------
     # Segunda tentativa:
-    # caso o arquivo tenha sido alterado exatamente durante
-    # o salvamento, busca novamente o SHA e tenta outra vez.
+    # caso o arquivo tenha sido alterado exatamente durante o
+    # salvamento, busca novamente o SHA e tenta outra vez.
     # ---------------------------------------------------------
 
     if resposta.status_code in (
@@ -519,6 +623,13 @@ def salvar_arquivo_github(
 
 
 def carregar_dados():
+    """
+    Lê os três arquivos existentes no GitHub (transportadores.json,
+    historico.json e relatorios.json) e retorna os dados EXATAMENTE como
+    estão lá. Se um arquivo ainda não existir (404), retorna uma lista
+    vazia apenas para esse arquivo específico — os arquivos que já
+    existem nunca são tocados aqui, apenas lidos.
+    """
 
     transportadores, sha_t, ok_t, erro_t = (
         carregar_arquivo_github(
@@ -586,6 +697,12 @@ def garantir_dados_no_github(
     sha_h,
     sha_r
 ):
+    """
+    Só cria um arquivo no GitHub quando ele realmente NÃO existe
+    (sha is None, ou seja, a consulta retornou 404). Se o arquivo já
+    existe, esta função não faz nada — nunca sobrescreve dados
+    existentes com uma lista vazia.
+    """
 
     token, repo, branch, data_dir = github_config()
 
@@ -623,16 +740,17 @@ def garantir_dados_no_github(
 # ---------------------------------------------------------------------------
 # CACHE EM MEMÓRIA (por sessão do navegador)
 #
-# Antes, TODA interação no app (trocar de aba, digitar, clicar em qualquer
-# botão) chamava carregar_dados() de novo, que fazia 3 requisições ao GitHub
-# a cada clique. Isso deixava o app lento e contribuía para a sensação de
-# precisar clicar duas vezes.
+# Sem isso, toda troca de aba/clique fazia 3 requisições ao GitHub de
+# novo. Agora os dados são buscados uma vez e guardados em
+# st.session_state; as telas usam essa cópia em memória. Como as listas
+# (transportadores, historico, relatorios) são sempre alteradas "no
+# lugar" (append, [:] = ..., etc.), qualquer alteração feita em uma tela
+# aparece imediatamente nas outras, sem precisar buscar o GitHub de novo
+# — e sem risco de mostrar dado desatualizado depois de salvar.
 #
-# Agora os dados são buscados uma vez e guardados em st.session_state.
-# As telas passam a usar essa cópia em memória, e só voltam a consultar o
-# GitHub quando: (1) o usuário clica em "Atualizar dados", ou (2) o cache
-# expira sozinho depois de alguns minutos (para não ficar desatualizado se
-# outra pessoa também estiver usando o sistema).
+# O cache também expira sozinho depois de alguns minutos, e existe um
+# botão manual "Atualizar dados" para forçar a releitura do GitHub a
+# qualquer momento.
 # ---------------------------------------------------------------------------
 
 CACHE_TTL_SEGUNDOS = 300  # 5 minutos
@@ -915,10 +1033,9 @@ def gerar_relatorio(
     data_atualizacao
 ):
     """
-    Gera o texto completo do relatório, no mesmo formato do PDF de
-    referência: título, data, e para cada modalidade o cabeçalho
-    "MODALIDADE: ..." seguido do enunciado oficial da modalidade e,
-    em seguida, as empresas credenciadas para ela.
+    Gera o texto completo do relatório, no formato oficial: título, data,
+    e para cada modalidade o cabeçalho "MODALIDADE: ..." seguido do
+    enunciado oficial da modalidade e das empresas credenciadas para ela.
     """
 
     linhas = [
@@ -1019,10 +1136,10 @@ def criar_docx(
     Converte o texto do relatório em um .docx formatado:
       - Título e data: negrito, centralizados
       - "MODALIDADE: ...": negrito, centralizado
-      - Enunciado da modalidade (texto logo abaixo do MODALIDADE): itálico,
-        justificado
-      - Nome da empresa (linha imediatamente antes de "CNPJ: ..."): negrito
-        e sublinhado
+      - Enunciado da modalidade (texto logo abaixo do MODALIDADE):
+        itálico, justificado
+      - Nome da empresa (linha imediatamente antes de "CNPJ: ..."):
+        negrito e sublinhado
       - Demais linhas: texto normal
       - Espaçamento entre linhas de aproximadamente 1,15 em todo o
         documento
@@ -1529,6 +1646,27 @@ def limpar_formulario():
     ] = None
 
 
+def solicitar_pagina(pagina):
+    """
+    Agenda a troca de página para a PRÓXIMA execução do script, em vez de
+    alterar st.session_state["pagina"] diretamente.
+
+    Isso é o que evita o StreamlitWidgetAlreadyInstantiatedError: o menu
+    lateral (st.sidebar.radio) é criado com key="pagina" logo no início
+    de main(). Se qualquer botão, mais abaixo na mesma execução, tentasse
+    escrever em st.session_state["pagina"] depois que esse widget já foi
+    criado, o Streamlit recusa a alteração e gera esse erro.
+
+    Por isso, os botões apenas registram o pedido em
+    st.session_state["pagina_solicitada"] (uma chave comum, sem nenhum
+    widget associado) e chamam st.rerun(). No início da PRÓXIMA
+    execução, main() lê esse pedido e só então atualiza
+    st.session_state["pagina"] — sempre ANTES do menu lateral ser criado.
+    """
+
+    st.session_state["pagina_solicitada"] = pagina
+
+
 def tela_formulario(
     transportadores,
     historico,
@@ -1776,6 +1914,12 @@ def tela_formulario(
             placeholder=(
                 "Ex.: 24/05/2026, "
                 "EM RENOVAÇÃO ou INDETERMINADA"
+            ),
+            help=(
+                "Se você digitar uma data no formato DD/MM/AAAA, o "
+                "sistema calcula automaticamente quando o credenciamento "
+                "vence. Textos como \"EM RENOVAÇÃO\" ou \"INDETERMINADA\" "
+                "nunca são tratados como vencidos."
             )
         )
 
@@ -1856,9 +2000,9 @@ def tela_formulario(
 
         limpar_formulario()
 
-        st.session_state[
-            "pagina"
-        ] = "Transportadores"
+        solicitar_pagina(
+            "Transportadores"
+        )
 
         st.rerun()
 
@@ -2007,7 +2151,8 @@ def tela_formulario(
 
             # -------------------------------------------------
             # SALVA O CADASTRO
-            # O método de salvamento sempre busca o SHA atual.
+            # transportadores já contém TODOS os registros
+            # anteriores + a alteração atual — nada é apagado.
             # -------------------------------------------------
 
             ok1, erro1 = salvar_arquivo_github(
@@ -2026,7 +2171,8 @@ def tela_formulario(
             else:
 
                 # ---------------------------------------------
-                # SALVA O HISTÓRICO
+                # SALVA O HISTÓRICO (também preservando tudo
+                # que já existia).
                 # ---------------------------------------------
 
                 ok2, erro2 = salvar_arquivo_github(
@@ -2053,9 +2199,14 @@ def tela_formulario(
 
                 limpar_formulario()
 
-                st.session_state[
-                    "pagina"
-                ] = "Transportadores"
+                # Como a lista "transportadores" em session_state foi
+                # alterada no lugar (é o mesmo objeto), o cache já fica
+                # atualizado automaticamente — não é preciso recarregar
+                # do GitHub para ver o resultado.
+
+                solicitar_pagina(
+                    "Transportadores"
+                )
 
                 st.rerun()
 
@@ -2080,23 +2231,29 @@ def tela_transportadores(
 
     mostrar_inativos = st.checkbox(
         "Mostrar também os inativos",
-        value=False
+        value=False,
+        help=(
+            "Também exibe transportadores desativados manualmente e "
+            "transportadores com credenciamento vencido."
+        )
     )
 
     # Busca sem diferenciar acentuação nem maiúsculas/minúsculas:
-    # "joao", "JOÃO" e "João" agora encontram o mesmo cadastro.
+    # "joao", "JOÃO" e "João" agora encontram o mesmo cadastro. O CNPJ
+    # continua sendo comparado tanto formatado quanto só com números.
     termo = normalizar_busca(busca)
 
     filtrados = []
 
     for transportador in transportadores:
 
+        status_info = gerar_status_transportador(
+            transportador
+        )
+
         if (
             not mostrar_inativos
-            and not transportador.get(
-                "ativo",
-                True
-            )
+            and not status_info["efetivamente_ativo"]
         ):
             continue
 
@@ -2112,11 +2269,11 @@ def tela_transportadores(
         ):
 
             filtrados.append(
-                transportador
+                (transportador, status_info)
             )
 
     filtrados.sort(
-        key=lambda x: x.get(
+        key=lambda par: par[0].get(
             "nome",
             ""
         ).upper()
@@ -2135,16 +2292,7 @@ def tela_transportadores(
 
         return
 
-    for transportador in filtrados:
-
-        status = (
-            "ATIVO"
-            if transportador.get(
-                "ativo",
-                True
-            )
-            else "INATIVO"
-        )
+    for transportador, status_info in filtrados:
 
         with st.container(
             border=True
@@ -2168,9 +2316,29 @@ def tela_transportadores(
 
                 st.write(
                     f"**Município:** "
-                    f"{transportador.get('municipio', '')} "
-                    f"— **Status:** {status}"
+                    f"{transportador.get('municipio', '')}"
                 )
+
+                if status_info["vencido"]:
+
+                    # Destaque discreto: só o rótulo de status recebe
+                    # cor, o restante do cartão permanece neutro.
+                    st.markdown(
+                        "<div style='display:inline-block; "
+                        "padding:3px 10px; border-radius:4px; "
+                        "background-color:#fdecea; color:#b3261e; "
+                        "font-weight:600; font-size:0.85em; "
+                        "margin-top:2px;'>"
+                        f"Status: {status_info['rotulo']}"
+                        "</div>",
+                        unsafe_allow_html=True
+                    )
+
+                else:
+
+                    st.write(
+                        f"**Status:** {status_info['rotulo']}"
+                    )
 
                 modalidades_texto = "; ".join(
                     transportador.get(
@@ -2196,9 +2364,9 @@ def tela_transportadores(
                         transportador
                     )
 
-                    st.session_state[
-                        "pagina"
-                    ] = "Novo Transportador"
+                    solicitar_pagina(
+                        "Novo Transportador"
+                    )
 
                     st.rerun()
 
@@ -2514,7 +2682,8 @@ def tela_relatorio(
 
 
 def tela_relatorios_anteriores(
-    relatorios
+    relatorios,
+    sha_r
 ):
 
     st.title(
@@ -2532,6 +2701,13 @@ def tela_relatorios_anteriores(
     for indice, relatorio in enumerate(
         relatorios
     ):
+
+        # Garante que todo relatório tenha um id estável, mesmo os mais
+        # antigos que por algum motivo não tenham um.
+        if not relatorio.get("id"):
+            relatorio["id"] = str(uuid.uuid4())
+
+        relatorio_id = relatorio["id"]
 
         data_atualizacao = (
             relatorio.get(
@@ -2567,10 +2743,7 @@ def tela_relatorios_anteriores(
                 "Conteúdo",
                 value=texto,
                 height=400,
-                key=(
-                    f"relatorio_antigo_"
-                    f"{relatorio.get('id', indice)}"
-                )
+                key=f"relatorio_antigo_{relatorio_id}"
             )
 
             copiar_texto_componente(
@@ -2578,7 +2751,7 @@ def tela_relatorios_anteriores(
                 f"relatorio_antigo_{indice}"
             )
 
-            coluna1, coluna2 = st.columns(2)
+            coluna1, coluna2, coluna3 = st.columns(3)
 
             with coluna1:
 
@@ -2592,10 +2765,7 @@ def tela_relatorios_anteriores(
                         f"{str(data_atualizacao).replace('/', '-')}.txt"
                     ),
                     mime="text/plain",
-                    key=(
-                        f"download_txt_"
-                        f"{relatorio.get('id', indice)}"
-                    ),
+                    key=f"download_txt_{relatorio_id}",
                     use_container_width=True
                 )
 
@@ -2616,12 +2786,98 @@ def tela_relatorios_anteriores(
                         "application/vnd.openxmlformats-officedocument."
                         "wordprocessingml.document"
                     ),
-                    key=(
-                        f"download_docx_"
-                        f"{relatorio.get('id', indice)}"
-                    ),
+                    key=f"download_docx_{relatorio_id}",
                     use_container_width=True
                 )
+
+            with coluna3:
+
+                chave_confirmacao = (
+                    f"confirmar_exclusao_{relatorio_id}"
+                )
+
+                if not st.session_state.get(
+                    chave_confirmacao,
+                    False
+                ):
+
+                    if st.button(
+                        "🗑️ Excluir",
+                        key=f"excluir_{relatorio_id}",
+                        use_container_width=True
+                    ):
+
+                        st.session_state[
+                            chave_confirmacao
+                        ] = True
+
+                        st.rerun()
+
+                else:
+
+                    st.warning(
+                        "Tem certeza que deseja excluir o relatório "
+                        f"de {data_atualizacao}? Esta ação não pode "
+                        "ser desfeita."
+                    )
+
+                    coluna_sim, coluna_nao = st.columns(2)
+
+                    with coluna_sim:
+
+                        if st.button(
+                            "Sim, excluir",
+                            key=f"confirmar_sim_{relatorio_id}",
+                            type="primary",
+                            use_container_width=True
+                        ):
+
+                            relatorios[:] = [
+                                r
+                                for r in relatorios
+                                if r.get("id") != relatorio_id
+                            ]
+
+                            ok, erro = salvar_arquivo_github(
+                                "relatorios.json",
+                                relatorios,
+                                sha_r,
+                                (
+                                    "Excluir relatório de "
+                                    f"{data_atualizacao}"
+                                )
+                            )
+
+                            st.session_state.pop(
+                                chave_confirmacao,
+                                None
+                            )
+
+                            if ok:
+                                st.success(
+                                    "Relatório excluído."
+                                )
+                            else:
+                                st.error(
+                                    erro
+                                )
+
+                            st.rerun()
+
+                    with coluna_nao:
+
+                        if st.button(
+                            "Cancelar",
+                            key=f"confirmar_nao_{relatorio_id}",
+                            use_container_width=True
+                        ):
+
+                            st.session_state.pop(
+                                chave_confirmacao,
+                                None
+                            )
+
+                            st.rerun()
 
 
 def tela_inicio(
@@ -2735,6 +2991,20 @@ def main():
             "pagina"
         ] = "Início"
 
+    # -----------------------------------------------------------
+    # Aplica qualquer navegação pedida por um botão na execução
+    # anterior (via solicitar_pagina). Isso acontece ANTES do
+    # st.sidebar.radio (mais abaixo) ser criado nesta execução,
+    # então nunca conflita com o widget e nunca gera
+    # StreamlitWidgetAlreadyInstantiatedError.
+    # -----------------------------------------------------------
+
+    if "pagina_solicitada" in st.session_state:
+
+        st.session_state["pagina"] = (
+            st.session_state.pop("pagina_solicitada")
+        )
+
     if "editando_id" not in st.session_state:
 
         st.session_state[
@@ -2756,7 +3026,8 @@ def main():
 
     if st.sidebar.button(
         "🔄 Atualizar dados",
-        use_container_width=True
+        use_container_width=True,
+        help="Busca a versão mais recente dos dados diretamente no GitHub."
     ):
 
         carregar_dados_cache(
@@ -2777,19 +3048,12 @@ def main():
         "Relatórios Anteriores"
     ]
 
-    # ---------------------------------------------------------------
-    # CORREÇÃO DO "CLIQUE DUPLO":
-    # Antes, este campo usava `index=` calculado a partir do
-    # session_state, e o próprio código reescrevia
-    # st.session_state["pagina"] logo em seguida. Isso fazia o rádio
-    # e o session_state ficarem "um passo atrasados" um do outro,
-    # exigindo dois cliques para a página realmente mudar.
-    #
-    # Agora o widget é ligado diretamente ao session_state através de
-    # key="pagina" — sem `index` e sem reatribuição manual depois —
-    # que é a forma correta/recomendada pelo Streamlit e resolve o
-    # problema com um único clique.
-    # ---------------------------------------------------------------
+    # O menu é ligado diretamente ao session_state através de
+    # key="pagina" (sem usar "index="), que é a forma segura e
+    # recomendada pelo Streamlit. A partir daqui, NADA neste script
+    # pode voltar a escrever em st.session_state["pagina"] durante
+    # esta mesma execução — qualquer navegação deve usar
+    # solicitar_pagina(), acima.
 
     st.sidebar.radio(
         "Navegação",
@@ -2835,7 +3099,8 @@ def main():
     elif pagina_atual == "Relatórios Anteriores":
 
         tela_relatorios_anteriores(
-            relatorios
+            relatorios,
+            sha_r
         )
 
 
