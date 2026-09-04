@@ -370,5 +370,34 @@
       "criado_em": "2026-09-02T18:13:12",
       "atualizado_em": "2026-09-02T18:13:30"
     }
+  },
+  {
+    "data": "2026-09-04T14:28:11",
+    "acao": "ANTES DA DESATIVAÇÃO",
+    "transportador": {
+      "id": "2a34c406-5738-4166-97d7-ac06191f954a",
+      "nome": "0 teste",
+      "cnpj": "00000000000100",
+      "logradouro": "00",
+      "numero": "00",
+      "complemento": "",
+      "bairro": "teste",
+      "municipio": "teste",
+      "uf": "CE",
+      "telefone": "00",
+      "email": "teste",
+      "tipo_credenciamento": "Processo de Credenciamento",
+      "numero_credenciamento": "teste",
+      "validade_credenciamento": "10/12/2025",
+      "descricao_licenca": "teste",
+      "validade_licenca": "0/12/2027",
+      "modalidades": [
+        "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+        "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)"
+      ],
+      "ativo": true,
+      "criado_em": "2026-09-02T18:13:12",
+      "atualizado_em": "2026-09-04T14:28:06"
+    }
   }
 ]
