@@ -1513,8 +1513,8 @@
       "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
       "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)"
     ],
-    "ativo": false,
+    "ativo": true,
     "criado_em": "2026-09-02T18:13:12",
-    "atualizado_em": "2026-09-02T18:13:30"
+    "atualizado_em": "2026-09-04T14:28:06"
   }
 ]
