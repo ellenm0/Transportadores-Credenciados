@@ -1516,5 +1516,29 @@
     "ativo": false,
     "criado_em": "2026-09-02T18:13:12",
     "atualizado_em": "2026-09-04T14:28:11"
+  },
+  {
+    "id": "86fa1336-c6ed-48f8-ac32-1eb520804c85",
+    "nome": "FENIX INDUSTRIA E COMERCIO DE RESIDUOS RECICLAVEIS LTDA",
+    "cnpj": "15121962000176",
+    "logradouro": "R JOSE ABREU PITA PINHEIRO",
+    "numero": "327",
+    "complemento": "",
+    "bairro": "GERERAU",
+    "municipio": "ITAITINGA",
+    "uf": "CE",
+    "telefone": "(85) 98124-1729",
+    "email": "meioambiente@reciclagemfenix.com.br",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR1198367/2024",
+    "validade_credenciamento": "13/10/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 169/2024 - SUPAD",
+    "validade_licenca": "18/06/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS"
+    ],
+    "ativo": true,
+    "criado_em": "2026-10-21T17:43:15",
+    "atualizado_em": "2026-10-21T17:43:15"
   }
 ]
