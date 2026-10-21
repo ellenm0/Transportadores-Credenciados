@@ -263,21 +263,17 @@
     "uf": "CE",
     "telefone": "(85) 4141-1872",
     "email": "coordenação@replama.com.br",
-    "tipo_credenciamento": "Processo de Credenciamento",
-    "numero_credenciamento": "P334692/2023",
-    "validade_credenciamento": "09/09/2026",
-    "descricao_licenca": "LICENÇA DE OPERAÇÃO: LO_PD044/2021 (S2021014729)",
-    "validade_licenca": "05/04/2026",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR3899779/2024",
+    "validade_credenciamento": "13/10/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 933/2026 - SUPAD",
+    "validade_licenca": "27/02/2028",
     "modalidades": [
-      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
-      "COLETA DE RESÍDUOS PERIGOSOS",
-      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (HOSPITALAR E AMBULATORIAL)",
-      "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)",
-      "COLETA DE RESÍDUOS RECICLÁVEIS"
+      "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS"
     ],
     "ativo": true,
     "criado_em": "2026-08-25T16:39:27",
-    "atualizado_em": "2026-08-25T16:39:27"
+    "atualizado_em": "2026-10-21T18:26:42"
   },
   {
     "id": "7aa4d65c-9c87-4628-8dc6-4523fcaa32d6",
