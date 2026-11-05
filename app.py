@@ -142,6 +142,19 @@ def normalizar_busca(texto):
     return remover_acentos(texto).upper().strip()
 
 
+# Categorias usadas no filtro da tela de transportadores. Cada
+# transportador pertence a UMA (e somente uma) delas.
+CATEGORIA_ATIVOS = "Ativos"
+CATEGORIA_PROXIMOS = "Próximos ao vencimento"
+CATEGORIA_INATIVOS = "Inativos"
+
+CATEGORIAS_FILTRO = [
+    CATEGORIA_ATIVOS,
+    CATEGORIA_PROXIMOS,
+    CATEGORIA_INATIVOS
+]
+
+
 def interpretar_validade(texto):
     """
     Tenta interpretar o campo de validade como uma data no formato
@@ -175,6 +188,11 @@ def gerar_status_transportador(transportador):
       - efetivamente_ativo: se deve contar como ativo na listagem
       - vencido: se o credenciamento já passou da validade
       - rotulo: texto de status a ser exibido na tela
+      - categoria: UMA (e somente uma) das categorias abaixo, usada
+        pelo filtro da tela de transportadores:
+          "Ativos"                  -> ativo e sem vencimento próximo
+          "Próximos ao vencimento"  -> ativo e faltando 90 dias ou menos
+          "Inativos"                -> desativado manualmente ou vencido
     """
 
     ativo_manual = transportador.get(
@@ -187,7 +205,8 @@ def gerar_status_transportador(transportador):
         return {
             "efetivamente_ativo": False,
             "vencido": False,
-            "rotulo": "INATIVO"
+            "rotulo": "INATIVO",
+            "categoria": CATEGORIA_INATIVOS
         }
 
     data_validade = interpretar_validade(
@@ -205,7 +224,8 @@ def gerar_status_transportador(transportador):
         return {
             "efetivamente_ativo": True,
             "vencido": False,
-            "rotulo": "ATIVO"
+            "rotulo": "ATIVO",
+            "categoria": CATEGORIA_ATIVOS
         }
 
     hoje = date.today()
@@ -219,7 +239,8 @@ def gerar_status_transportador(transportador):
         return {
             "efetivamente_ativo": False,
             "vencido": True,
-            "rotulo": "INATIVO — CREDENCIAMENTO VENCIDO"
+            "rotulo": "INATIVO — CREDENCIAMENTO VENCIDO",
+            "categoria": CATEGORIA_INATIVOS
         }
 
     if dias_restantes == 0:
@@ -227,7 +248,8 @@ def gerar_status_transportador(transportador):
         return {
             "efetivamente_ativo": True,
             "vencido": False,
-            "rotulo": "ATIVO — vence hoje"
+            "rotulo": "ATIVO — vence hoje",
+            "categoria": CATEGORIA_PROXIMOS
         }
 
     if dias_restantes <= 90:
@@ -240,13 +262,15 @@ def gerar_status_transportador(transportador):
             "rotulo": (
                 f"ATIVO — {dias_restantes} {unidade} "
                 f"para seu vencimento"
-            )
+            ),
+            "categoria": CATEGORIA_PROXIMOS
         }
 
     return {
         "efetivamente_ativo": True,
         "vencido": False,
-        "rotulo": "ATIVO"
+        "rotulo": "ATIVO",
+        "categoria": CATEGORIA_ATIVOS
     }
 
 
@@ -1137,9 +1161,10 @@ def criar_docx(
       - Título e data: negrito, centralizados
       - "MODALIDADE: ...": negrito, centralizado
       - Enunciado da modalidade (texto logo abaixo do MODALIDADE):
-        itálico, justificado
+        texto normal (sem itálico), justificado
       - Nome da empresa (linha imediatamente antes de "CNPJ: ..."):
         negrito e sublinhado
+      - Linha do CNPJ: negrito, Times New Roman, tamanho 11
       - Demais linhas: texto normal
       - Espaçamento entre linhas de aproximadamente 1,15 em todo o
         documento
@@ -1148,6 +1173,8 @@ def criar_docx(
     from docx import Document
     from docx.shared import Pt
     from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml import OxmlElement
+    from docx.oxml.ns import qn
 
     documento = Document()
 
@@ -1231,17 +1258,39 @@ def criar_docx(
             run.underline = True
             run.font.size = Pt(11)
 
+        elif linha_limpa.startswith("CNPJ:"):
+
+            # Linha do CNPJ: negrito, Times New Roman, tamanho 11
+            run = paragrafo.add_run(linha_limpa)
+            run.bold = True
+            run.font.name = "Times New Roman"
+            run.font.size = Pt(11)
+
+            propriedades_fonte = run._element.get_or_add_rPr()
+            fontes = propriedades_fonte.find(qn("w:rFonts"))
+
+            if fontes is None:
+                fontes = OxmlElement("w:rFonts")
+                propriedades_fonte.append(fontes)
+
+            for atributo in (
+                "w:ascii",
+                "w:hAnsi",
+                "w:cs",
+                "w:eastAsia"
+            ):
+                fontes.set(qn(atributo), "Times New Roman")
+
         elif (
             anterior_nao_vazia.startswith("MODALIDADE:")
             and linha_limpa
         ):
 
-            # Enunciado/descrição oficial da modalidade
+            # Enunciado/descrição oficial da modalidade (sem itálico)
             formato.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             formato.space_after = Pt(10)
 
             run = paragrafo.add_run(linha_limpa)
-            run.italic = True
             run.font.size = Pt(10)
 
         elif linha_limpa:
@@ -2211,6 +2260,126 @@ def tela_formulario(
                 st.rerun()
 
 
+def valor_ou_traco(valor):
+    """
+    Devolve o texto ou um traço quando o campo estiver vazio.
+    """
+
+    texto = str(valor or "").strip()
+
+    return texto if texto else "—"
+
+
+def exibir_detalhes_transportador(
+    transportador,
+    status_info
+):
+    """
+    Mostra todos os dados do cadastro apenas para leitura
+    (não permite alterar nada).
+    """
+
+    st.divider()
+
+    st.markdown(
+        "#### Detalhes do cadastro"
+    )
+
+    detalhe1, detalhe2 = st.columns(2)
+
+    with detalhe1:
+
+        st.write(
+            f"**Nome/Razão Social:** "
+            f"{valor_ou_traco(transportador.get('nome'))}"
+        )
+
+        st.write(
+            f"**CNPJ:** "
+            f"{valor_ou_traco(formatar_cnpj(transportador.get('cnpj', '')))}"
+        )
+
+        st.write(
+            f"**Endereço:** "
+            f"{valor_ou_traco(montar_endereco(transportador))}"
+        )
+
+        st.write(
+            f"**Telefone:** "
+            f"{valor_ou_traco(transportador.get('telefone'))}"
+        )
+
+        st.write(
+            f"**E-mail:** "
+            f"{valor_ou_traco(transportador.get('email'))}"
+        )
+
+        st.write(
+            f"**Status:** {status_info['rotulo']}"
+        )
+
+    with detalhe2:
+
+        st.write(
+            f"**Tipo de credenciamento:** "
+            f"{valor_ou_traco(transportador.get('tipo_credenciamento'))}"
+        )
+
+        st.write(
+            f"**Nº do processo/credenciamento:** "
+            f"{valor_ou_traco(transportador.get('numero_credenciamento'))}"
+        )
+
+        st.write(
+            f"**Validade do credenciamento:** "
+            f"{valor_ou_traco(transportador.get('validade_credenciamento'))}"
+        )
+
+        st.write(
+            f"**Descrição da licença:** "
+            f"{valor_ou_traco(transportador.get('descricao_licenca'))}"
+        )
+
+        st.write(
+            f"**Validade da licença:** "
+            f"{valor_ou_traco(transportador.get('validade_licenca'))}"
+        )
+
+    modalidades_cadastradas = transportador.get(
+        "modalidades",
+        []
+    )
+
+    st.write(
+        "**Modalidades:**"
+    )
+
+    if modalidades_cadastradas:
+
+        for modalidade in modalidades_cadastradas:
+
+            st.write(
+                f"- {modalidade}"
+            )
+
+    else:
+
+        st.write("—")
+
+    criado_em = str(
+        transportador.get("criado_em", "")
+    ).replace("T", " ")
+
+    atualizado_em = str(
+        transportador.get("atualizado_em", "")
+    ).replace("T", " ")
+
+    st.caption(
+        f"Cadastrado em: {valor_ou_traco(criado_em)}"
+        f"  |  Última atualização: {valor_ou_traco(atualizado_em)}"
+    )
+
+
 def tela_transportadores(
     transportadores,
     historico,
@@ -2229,31 +2398,65 @@ def tela_transportadores(
         )
     )
 
-    mostrar_inativos = st.checkbox(
-        "Mostrar também os inativos",
-        value=False,
+    filtro_status = st.multiselect(
+        "Filtrar por situação",
+        CATEGORIAS_FILTRO,
+        default=[
+            CATEGORIA_ATIVOS,
+            CATEGORIA_PROXIMOS
+        ],
         help=(
-            "Também exibe transportadores desativados manualmente e "
-            "transportadores com credenciamento vencido."
+            "Você pode marcar mais de uma opção ao mesmo tempo. "
+            "Cada transportador aparece em apenas uma situação: "
+            "\"Ativos\" (credenciamento em dia), "
+            "\"Próximos ao vencimento\" (ativos com 90 dias ou menos "
+            "para vencer) e \"Inativos\" (desativados manualmente ou "
+            "com credenciamento vencido). Se nenhuma opção for "
+            "marcada, todos são exibidos."
         )
     )
 
+    # Calcula a situação de cada transportador uma única vez.
+    todos_com_status = [
+        (
+            transportador,
+            gerar_status_transportador(
+                transportador
+            )
+        )
+        for transportador in transportadores
+    ]
+
+    contagem = {
+        categoria: 0
+        for categoria in CATEGORIAS_FILTRO
+    }
+
+    for _, status_calculado in todos_com_status:
+
+        contagem[
+            status_calculado["categoria"]
+        ] += 1
+
+    st.caption(
+        f"Total cadastrado: {len(transportadores)}  |  "
+        f"Ativos: {contagem[CATEGORIA_ATIVOS]}  |  "
+        f"Próximos ao vencimento: {contagem[CATEGORIA_PROXIMOS]}  |  "
+        f"Inativos: {contagem[CATEGORIA_INATIVOS]}"
+    )
+
     # Busca sem diferenciar acentuação nem maiúsculas/minúsculas:
-    # "joao", "JOÃO" e "João" agora encontram o mesmo cadastro. O CNPJ
+    # "joao", "JOÃO" e "João" encontram o mesmo cadastro. O CNPJ
     # continua sendo comparado tanto formatado quanto só com números.
     termo = normalizar_busca(busca)
 
     filtrados = []
 
-    for transportador in transportadores:
-
-        status_info = gerar_status_transportador(
-            transportador
-        )
+    for transportador, status_info in todos_com_status:
 
         if (
-            not mostrar_inativos
-            and not status_info["efetivamente_ativo"]
+            filtro_status
+            and status_info["categoria"] not in filtro_status
         ):
             continue
 
@@ -2281,7 +2484,7 @@ def tela_transportadores(
 
     st.caption(
         f"{len(filtrados)} "
-        f"transportador(es) encontrado(s)."
+        f"transportador(es) exibido(s)."
     )
 
     if not filtrados:
@@ -2293,6 +2496,15 @@ def tela_transportadores(
         return
 
     for transportador, status_info in filtrados:
+
+        chave_visualizar = (
+            f"visualizar_{transportador['id']}"
+        )
+
+        detalhes_abertos = st.session_state.get(
+            chave_visualizar,
+            False
+        )
 
         with st.container(
             border=True
@@ -2353,6 +2565,18 @@ def tela_transportadores(
                 )
 
             with coluna_acoes:
+
+                if st.button(
+                    "Ocultar" if detalhes_abertos else "Visualizar",
+                    key=f"btn_visualizar_{transportador['id']}",
+                    use_container_width=True
+                ):
+
+                    st.session_state[
+                        chave_visualizar
+                    ] = not detalhes_abertos
+
+                    st.rerun()
 
                 if st.button(
                     "Editar",
@@ -2512,6 +2736,13 @@ def tela_transportadores(
                             st.error(
                                 erro1
                             )
+
+            if detalhes_abertos:
+
+                exibir_detalhes_transportador(
+                    transportador,
+                    status_info
+                )
 
 
 def tela_relatorio(
