@@ -1536,5 +1536,30 @@
     "ativo": true,
     "criado_em": "2026-10-21T17:43:15",
     "atualizado_em": "2026-10-21T17:43:15"
+  },
+  {
+    "id": "40baf023-5a2d-474a-aa4e-845b438a2092",
+    "nome": "32.302.955 CRISTIANO DOS SANTOS BATISTA",
+    "cnpj": "32302955000190",
+    "logradouro": "R TAMANDARE",
+    "numero": "480",
+    "complemento": "",
+    "bairro": "Pajuçara",
+    "municipio": "Maracanaú",
+    "uf": "CE",
+    "telefone": "(85) 9968-4405",
+    "email": "mafsaambiental@gmail.com",
+    "tipo_credenciamento": "Número de Credenciamento",
+    "numero_credenciamento": "TR9362843/2024",
+    "validade_credenciamento": "05/11/2030",
+    "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 7015/2024 - SUPAD",
+    "validade_licenca": "13/09/2027",
+    "modalidades": [
+      "COLETA DE RESÍDUOS RECICLÁVEIS",
+      "COLETA DE PRODUTOS E EMBALAGENS OBJETOS DE LOGÍSTICA REVERSA"
+    ],
+    "ativo": true,
+    "criado_em": "2026-11-09T17:12:02",
+    "atualizado_em": "2026-11-09T17:12:02"
   }
 ]
