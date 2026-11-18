@@ -921,5 +921,36 @@
       "criado_em": "2026-08-25T16:47:11",
       "atualizado_em": "2026-08-25T16:50:30"
     }
+  },
+  {
+    "data": "2026-11-18T12:13:08",
+    "acao": "ANTES DA EDIÇÃO",
+    "transportador": {
+      "id": "7aa4d65c-9c87-4628-8dc6-4523fcaa32d6",
+      "nome": "J E SERVICOS DE COLETA E TRANSPORTES DE LIXO URBANO LTDA (NEW LIMP)",
+      "cnpj": "12798554000246",
+      "logradouro": "AVENIDA QUARTO ANEL VIARIO",
+      "numero": "2935",
+      "complemento": "",
+      "bairro": "SIQUEIRA",
+      "municipio": "FORTALEZA",
+      "uf": "CE",
+      "telefone": "(85) 3067-1571",
+      "email": "amarino@newlimp.com.br",
+      "tipo_credenciamento": "Número de Credenciamento",
+      "numero_credenciamento": "TR1123523/2024",
+      "validade_credenciamento": "08/09/2029",
+      "descricao_licenca": "LICENÇA DE OPERAÇÃO _ LO_PD008/2022 (S2020005015 )",
+      "validade_licenca": "26/01/2027",
+      "modalidades": [
+        "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS",
+        "COLETA DE RESÍDUOS PERIGOSOS",
+        "COLETA DE RESÍDUOS RECICLÁVEIS",
+        "COLETA DE RESÍDUOS DE SERVIÇOS DE SAÚDE (AMBULATORIAL)"
+      ],
+      "ativo": true,
+      "criado_em": "2026-08-25T16:47:11",
+      "atualizado_em": "2026-11-18T12:10:27"
+    }
   }
 ]
