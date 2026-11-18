@@ -862,5 +862,33 @@
       "criado_em": "2026-08-27T14:12:06",
       "atualizado_em": "2026-08-27T14:12:06"
     }
+  },
+  {
+    "data": "2026-11-18T12:05:30",
+    "acao": "ANTES DA EDIÇÃO",
+    "transportador": {
+      "id": "36ae79a4-15d6-4c67-8131-db7f93f8b4d2",
+      "nome": "GUIMAREIAS COMERCIO  LOCAÇÕES E TRANSP. DE MÁQUINAS LTDA",
+      "cnpj": "19138316000172",
+      "logradouro": "RUA ENGENHEIRO CLEBER DINIZ",
+      "numero": "397",
+      "complemento": "",
+      "bairro": "JOSE  DE ALENCAR",
+      "municipio": "FORTALEZA",
+      "uf": "CE",
+      "telefone": "(85) 3086-8576",
+      "email": "gestaoadm@guimareias.com.br",
+      "tipo_credenciamento": "Processo de Credenciamento",
+      "numero_credenciamento": "P111568/2024",
+      "validade_credenciamento": "30/06/2028",
+      "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 6240/2023 - SUPAD",
+      "validade_licenca": "13/04/2026",
+      "modalidades": [
+        "COLETA DE RESÍDUOS VEGETAIS E DA CONSTRUÇÃO CIVIL PROVENIENTES DE ESCAVAÇÃO, DE DEMOLIÇÃO E DE SERVIÇOS DE TERRAPLENAGEM, POR MEIO DE CAÇAMBA BASCULANTE"
+      ],
+      "ativo": true,
+      "criado_em": "2026-08-26T19:55:48",
+      "atualizado_em": "2026-08-26T19:55:48"
+    }
   }
 ]
