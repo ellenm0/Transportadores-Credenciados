@@ -1188,5 +1188,33 @@
       "criado_em": "2026-08-27T12:19:06",
       "atualizado_em": "2026-11-19T13:08:58"
     }
+  },
+  {
+    "data": "2026-11-19T13:24:25",
+    "acao": "ANTES DA EDIÇÃO",
+    "transportador": {
+      "id": "aa52c463-0a48-4f68-bac9-66e77f78e986",
+      "nome": "REPLAMA PRESTACAO DE SERVICOS LTDA",
+      "cnpj": "03191712000123",
+      "logradouro": "RUA NEUZA DE FREITAS SA",
+      "numero": "31",
+      "complemento": "",
+      "bairro": "JABUTI",
+      "municipio": "EUSEBIO",
+      "uf": "CE",
+      "telefone": "(85) 4141-1872",
+      "email": "coordenação@replama.com.br",
+      "tipo_credenciamento": "Número de Credenciamento",
+      "numero_credenciamento": "TR3899779/2024",
+      "validade_credenciamento": "13/10/2030",
+      "descricao_licenca": "LICENÇA AMBIENTAL POR ADESÃO E COMPROMISSO Nº 933/2026 - SUPAD",
+      "validade_licenca": "27/02/2028",
+      "modalidades": [
+        "COLETA E TRANSPORTE DE RESÍDUOS NÃO PERIGOSOS"
+      ],
+      "ativo": true,
+      "criado_em": "2026-08-25T16:39:27",
+      "atualizado_em": "2026-10-21T18:26:42"
+    }
   }
 ]
